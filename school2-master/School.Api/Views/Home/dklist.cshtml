@@ -1,0 +1,271 @@
+﻿@{ Layout = null;}
+
+@model school.Model.VO.School.DkListVO
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>上课列表</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/common1.css">
+    <style type="text/css">
+    </style>
+
+    <script src="~/JS/jquery-2.1.1.min.js"></script>
+
+    @*<script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+        <script>
+            wx.config({
+                debug: true,
+                appId: "wxa23e649ec9441aed",
+            timestamp: @ViewBag.Ct,
+            nonceStr: '@ViewBag.Str',
+            signature:  '@ViewBag.Sd',
+            jsApiList: [
+                'checkJsApi',
+                'updateTimelineShareData',
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'onMenuShareQQ',
+                        'onMenuShareWeibo',
+                        'hideMenuItems',
+                        'chooseImage'
+                    ]
+        });
+
+            // 调用微信API
+
+            wx.error(function(res){
+            });
+
+            wx.ready(function () {      //需在用户可能点击分享按钮前就先调用
+                wx.updateTimelineShareData({
+                    title: '测试', // 分享标题
+                    link: "@System.Web.Configuration.WebConfigurationManager.AppSettings["DomainName"]", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                    imgUrl: '@("@System.Web.Configuration.WebConfigurationManager.AppSettings["DomainName"]"+"/images/lp-01.png")', // 分享图标
+                    success: function () {
+                        window.location.href = "@System.Web.Configuration.WebConfigurationManager.AppSettings["DomainName"]"+"/home/luck";
+                    }
+                })
+            });
+        </script>*@
+
+</head>
+<body style="background-color: #EFEFEF;">
+    <div class="head_tab">
+        <div class="item" data-index="0">
+            <div class="name">课堂打卡<div class="line"></div></div>
+        </div>
+        <div class="item" data-index="1">
+            <div class="name">play at home打卡<div class="line"></div></div>
+        </div>
+        <div class="item" data-index="2">
+            <div class="name"> 体验课<div class="line"></div></div>
+        </div>
+    </div>
+    <div style="height:42px;"></div>
+    <!-- 约课列表 -->
+    <div class="head_tab_con" id="class_list_box" style="display: none;">
+        <div class="list_box">
+            <div class="job_list">
+                @{
+                var count2 = 0;
+                foreach (var item in Model.StudentClassList)
+                {
+                    <div class="job_item">
+                        <div class="job_middle">
+                            <div class="desc">课程名称：@item.TeacherCourseName</div>
+                            <div class="desc">上课时间：@item.Day</div>
+                            <div class="desc">场馆名称：@item.SchoolName-@item.FieldName</div>
+                        </div>
+                        <div class="job_btn_group float_after">
+                            <a href="uploadjob?id=@item.Id&&type=0">上传视频</a>  <div class="btn float_right" onclick="query('@item.Id',0)">打卡</div>
+                        </div>
+                    </div>
+                }
+                count2 = 1;
+            }
+        </div>
+        @{
+            if (count2 == 0)
+            {
+                <div class='no_data_con'>
+                    <img src='@System.Web.Configuration.WebConfigurationManager.AppSettings["DomainName"]+"/imgs/icon_user_order_nodata01.png"' class='no_data_con_img' style='height:auto;' />
+                    <div class='no_data_con_ab' style=''>
+                        <div class='no_data_con_ab_text' style='color:#777777;font-size:16px;'>暂无</div>
+                    </div>
+                </div>
+            }
+        }
+        </div>
+    </div>
+
+    <!-- 作业列表 -->
+    <div class="head_tab_con" id="job_list_box" style="display: none;">
+        <div class="list_box">
+            <div class="job_list">
+             @{
+                 var count1 = 0;
+                 foreach (var item in Model.StudentClassList)
+                 {
+                    <div class="job_item">
+                        <div class="job_middle">
+                            <div class="desc">课程名称：@item.TeacherCourseName</div>
+                            <div class="desc">上课时间：@item.Day</div>
+                            <div class="desc">场馆名称：@item.SchoolName-@item.FieldName</div>
+                        </div>
+                        <div class="job_btn_group float_after">
+                          <a href="uploadjob?id=@item.Id&&type=1">上传视频</a><div class="btn float_right" onclick="query('@item.Id',1)">打卡</div>
+                            </div>
+                    </div>
+                 }   
+                 count1 = 1;
+                 }
+            </div>
+            @{
+                if (count1 == 0)
+                {
+                    <div class='no_data_con'>
+                        <img src='@System.Web.Configuration.WebConfigurationManager.AppSettings["DomainName"]+"imgs/icon_user_order_nodata01.png"' class='no_data_con_img' style='height:auto;' />
+                        <div class='no_data_con_ab' style=''>
+                            <div class='no_data_con_ab_text' style='color:#777777;font-size:16px;'>暂无</div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+    </div>
+    <!-- 体验课列表 -->
+    <div class="head_tab_con" id="course_list_box" style="display: none;">
+        <div class="list_box">
+            <div class="course_list">
+                @{
+                    var count = 0;
+                    foreach (var item in Model.StudentClassList)
+                    {
+                        <div class="course_item">
+                            <div class="course_middle">
+                                <div class="desc">课程名称：@item.TeacherCourseName</div>
+                                <div class="desc">上课时间：@item.Day</div>
+                                <div class="desc">场馆名称：@item.SchoolName-@item.FieldName</div>
+                            </div>
+                            <div class="course_bottom float_after">
+								<a href="uploadjob?id=@item.Id&&type=2">上传视频</a>
+                                <div class="course_btn green float_right" onclick="query('@item.Id',2)">打卡</div>
+                            </div>
+                        </div>
+                                            count = 1;
+                                        }
+                }
+            </div>
+            @{
+                if (count == 0)
+                {
+                    <div class='no_data_con'>
+                        <img src='@System.Web.Configuration.WebConfigurationManager.AppSettings["DomainName"]+"/imgs/icon_user_order_nodata01.png"' class='no_data_con_img' style='height:auto;' />
+                        <div class='no_data_con_ab' style=''>
+                            <div class='no_data_con_ab_text' style='color:#777777;font-size:16px;'>暂无</div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    @*<div class="page_box" id="page_box"></div>*@
+</body>
+<script src="/js/jquery.js"></script>
+<script src="/layui/layui.js"></script>
+<script type="text/javascript">
+    layui.use(['laypage', 'layer'], function () {
+        var laypage = layui.laypage,
+            layer = layui.layer;
+
+        //只显示上一页、下一页
+        laypage.render({
+            elem: 'page_box',
+            count: 50,
+            layout: ['prev', 'next'],
+            jump: function (obj, first) {
+                if (!first) {
+                    window.location.href="/home/dklist?id=" + @ViewBag.Id+"&&page=" + first
+                }
+
+            }
+        });
+    })
+    $(document).ready(function () {
+        //获取视窗宽度（兼容性写法）
+        var rootHeight = document.documentElement.clientHeight || document.body.clientHeight;
+        console.log(rootHeight)
+        $(".list_box").css("min-height", (rootHeight - 60) + "px");
+        $(".head_tab .item").click(function () {
+            var index = $(this).data('index');
+            $(".head_tab_con").css("display", "none");
+            $(".head_tab_con").eq(index).css("display", "block");
+            $(".head_tab .item").removeClass('on');
+            $(".head_tab .item").eq(index).addClass('on');
+            window.location.href="/home/dklist?id=" + index
+        })
+    })
+</script>
+<script>
+    function query(id, type) {
+        var src = "";
+        $.ajax({
+            headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'@ViewBag.Uid'}" },
+            url: "/wapi/User/SaveShare2",
+            type: "post",
+            dataType: "json",
+            data: JSON.stringify({
+                "UserKey": '@ViewBag.Id',
+                "Pic": src,
+                "StudentCourseClassId": id,
+                "Types": type
+            }),
+            success: function (data) {
+                if (data.IsSuccess)
+                    window.location.href = @System.Web.Configuration.WebConfigurationManager.AppSettings["DomainName"] + "/home/signin?state=" + data.Body.Model.Id;
+				if(data.Message !=''){
+					layer.msg(data.Message)
+				}
+            }, error: function (res) {
+                alert("操作失败！");
+            }
+        });
+    }
+
+
+
+     @*$(function () {
+        $(".btn").click(function (id) {
+            $.ajax({
+                headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'@ViewBag.Uid'}" },
+                url: "/wapi/User/SaveShare2",
+                type: "post",
+                dataType: "json",
+                data: JSON.stringify({
+                    "UserKey": '@ViewBag.Id',
+                    "Pic": src,
+                    "StudentCourseClassId":""
+                }),
+                success: function (data) {
+                    if (data.IsSuccess)
+                        window.location.href = @System.Web.Configuration.WebConfigurationManager.AppSettings["DomainName"]+"/home/signin?state=" + data.Body.Model.Id;
+                }, error: function (res) {
+                    alert("操作失败！");
+                }
+            })
+        });
+    })*@
+
+
+	var stype = @ViewBag.Id;
+	$(".head_tab_con").eq(stype).css("display", "block");
+	$(".head_tab .item").eq(stype).addClass('on');
+</script>
+
+</html> 

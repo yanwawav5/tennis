@@ -1,0 +1,71 @@
+﻿@{ Layout = null;}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>上传作业</title>
+   
+    <script src="~/JS/jquery-2.1.1.min.js"></script>
+    
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+    <script>
+        wx.config({
+            debug: true,
+            appId: "wxa23e649ec9441aed",
+        timestamp: @ViewBag.Ct,
+        nonceStr: '@ViewBag.Str',
+        signature:  '@ViewBag.Sd',
+        jsApiList: [
+            'checkJsApi',
+            'updateTimelineShareData',
+		            'onMenuShareTimeline',
+		            'onMenuShareAppMessage',
+		            'onMenuShareQQ',
+		            'onMenuShareWeibo',
+		            'hideMenuItems',
+		            'chooseImage'
+		        ]
+    });
+
+        // 调用微信API
+
+        wx.error(function(res){
+        });
+
+        wx.ready(function () {      //需在用户可能点击分享按钮前就先调用
+            wx.updateTimelineShareData({
+                title: '测试', // 分享标题
+                link: "@System.Web.Configuration.WebConfigurationManager.AppSettings["DomainName"]", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: "@System.Web.Configuration.WebConfigurationManager.AppSettings["DomainName"]" + "/images/lp-01.png", // 分享图标
+                success: function () {
+                    location.href = @System.Web.Configuration.WebConfigurationManager.AppSettings["DomainName"] + "/home/luck";
+                }
+            })
+        });
+
+    @*wx.ready(function () {
+    var brd='@("测试测试")';
+    var lin=@System.Web.Configuration.WebConfigurationManager.AppSettings["DomainName"];
+        var sdata = {
+            title: brd,
+            desc: brd,
+            link: lin,
+            imgUrl: @System.Web.Configuration.WebConfigurationManager.AppSettings["DomainName"] + "/images/lp-01.png",
+            success: function () {
+
+            },
+            cancel: function () {
+
+            }
+        };
+        wx.onMenuShareTimeline(sdata);
+        wx.onMenuShareAppMessage(sdata);
+  });*@
+    </script>
+
+</head>
+<body>
+  
+</body>
+</html>

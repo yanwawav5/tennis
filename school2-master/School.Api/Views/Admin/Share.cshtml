@@ -1,0 +1,123 @@
+﻿@{
+    Layout = null;
+}
+@model school.Model.DAO.M_ShareInfo
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> - 基本表单</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/ad/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/ad/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/ad/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/ad/css/animate.css" rel="stylesheet">
+    <link href="/ad/css/style.css?v=4.1.0" rel="stylesheet">
+
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    
+
+
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>内容</h5>
+                        <div class="ibox-tools">
+                            <ul class="dropdown-menu dropdown-user"></ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label>昵称</label>
+                                        <input type="text" id="title" class="form-control" value="@Model.NickName" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>打卡日期</label>
+                                        <input type="text" id="title" class="form-control" value="@Model.ShareDay" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>打卡视频</label>
+                                        <input type="text" id="pic" class="form-control" value="@System.Web.Configuration.WebConfigurationManager.AppSettings["DomainName"]@Model.Url" />  
+                                        <video id="video" width="360" height="360" src="@System.Web.Configuration.WebConfigurationManager.AppSettings["DomainName"]@Model.Url" controls ></video> 
+                                    </div>
+                                    <div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- 全局js -->
+    <script src="/ad/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/ad/js/bootstrap.min.js?v=3.3.6"></script>
+    <!-- 自定义js -->
+    <script src="/ad/js/content.js?v=1.0.0"></script>
+    <!-- iCheck -->
+    @*<script src="/ad/js/plugins/iCheck/icheck.min.js"></script>*@
+    <script src="/layui/layui.js"></script>
+
+
+
+    @*<script>
+            function query(id) {
+                alert('ajax请求之前');
+                $.ajax({
+                    url: "/wapi/Wadmin/Ste",
+                    async: true,
+                    type: "POST",
+                    data: {
+                        "studentId": $("#test").val(),
+                        "StudentClassId": id
+                    },
+                    // 成功后开启模态框
+                    success: alert("操作成功");
+                    error: function () {
+                        alert("请求失败");
+                    },
+                    dataType: "json"
+                });
+            }
+
+            //$(document).ready(function () {
+            //    $("#tj").Click({
+            //        $("#test").val("asdasd");
+            //        //alert(aa);
+            //         //ss:  $("#id").val(),
+            //    });
+            //});
+
+            //$(document).ready(function () {
+            //    $('.i-checks').iCheck({
+            //        checkboxClass: 'icheckbox_square-green',
+            //        radioClass: 'iradio_square-green',
+            //    });
+            //});
+            function showQuery(data) {
+            }
+        </script>*@
+
+
+</body>
+</html>

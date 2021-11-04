@@ -1,0 +1,190 @@
+﻿@{
+    Layout = null;
+}
+@model school.Model.VO.OrderVO
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> - 订单</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/common.css">
+
+    <link href="/ad/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/ad/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/ad/css/animate.css" rel="stylesheet">
+    <link href="/ad/css/style.css?v=4.1.0" rel="stylesheet">
+
+
+
+</head>
+
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>内容</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="form_editors.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li>
+                                    <a href="form_editors.html#">选项1</a>
+                                </li>
+                                <li>
+                                    <a href="form_editors.html#">选项2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label>学生姓名</label>
+                                        <input type="text" id="StudentName" class="form-control" value="@Model.Name" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>购买姓名</label>
+                                        <input type="text" id="Name" class="form-control" value="@Model.Name" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>购买手机</label>
+                                        <input type="text" id="StudentTel" class="form-control" value="@Model.Tel" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>场地</label>
+                                        @Model.SchoolName -@Model.FieldName
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>时间</label>
+                                        @Model.Day
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>价格(分)如果是元请*100</label>
+                                        <input type="text" id="Price" class="form-control" value="@Model.Price" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>创建时间</label>
+                                        <input type="text" id="Createtime" class="form-control" value="@Model.CreateTime" />
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <button type="button" id="btn">提交</button>
+                                        </label>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+<!-- 全局js -->
+<script src="/ad/js/jquery.min.js?v=2.1.4"></script>
+<script src="/ad/js/bootstrap.min.js?v=3.3.6"></script>
+
+<!-- 自定义js -->
+<script src="/ad/js/content.js?v=1.0.0"></script>
+
+<script> 
+           function query(id) {
+               $.ajax({
+                   headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'00c11211-0e0c-464b-8e37-33ac40747fb1'}" },
+                   url: "/wapi/wadmin/SubEsc",
+                   async: true,
+                   type: "POST",
+                    data: JSON.stringify({
+                        "Points": sHTML,
+                        "id": id,
+                        "PaterId":"@ViewBag.ParId",
+                        "Name": $("#Name").val(),
+                        "VideoUrl": src,
+                        "Sort": $("#Sort").val(),
+                    }),
+                   success: function (res) {
+                       if (res.IsSuccess) {
+                           alert("操作成功");
+                           window.location.href = "/admin/dicItemList/@ViewBag.ParId";
+                       }
+                       else {
+                           alert(res.Message);
+                       }
+                   },
+                   error: function () {
+                       alert("请求失败");
+                   },
+                   dataType: "json"
+               });
+        }
+</script>
+@*<script>
+        $(function () {
+            var id ="@ViewBag.Id";
+            $("#btn").click(function () {
+                var ageCategoryId = $('input[name="AgeCategoryId"]:checked').val();
+                var categoryId = $('input[name="CategoryId"]:checked').val();
+                alert(asd);
+                return false;
+                    var sHTML = $('.summernote').code();
+                    $("div#html").html(sHTML);
+                    alert(sHTML);
+
+                    $.ajax({
+                        headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'00c11211-0e0c-464b-8e37-33ac40747fb1'}" },
+                        url: "/wapi/WxSmall/CreateOrUpdateCourse",
+                        async: true,
+                        type: "POST",
+                        data: JSON.stringify({
+                            "main": sHTML,
+                            "id": id,
+                            "title": $("#title").val(),
+                            "Sort": $("#Sort").val(),
+                            "CategoryId": categoryId,
+                            "AgeCategoryId": ageCategoryId,
+                            "ClassTimes": $("#ClassTimes").val(),
+                            "PeoperNum": $("#PeoperNum").val(),
+                            "HourInfo": $("#HourInfo").val(),
+                            "Price": $("#Price").val(),
+                            "Book": ageCategoryId+","+categoryId,
+                            "Pic": $("#Pic").val(),
+                            "SubMain": $("#SubMain").val(),
+
+                        }),
+                        // 成功后开启模态框
+                        success:
+                            alert("操作成功"),
+                        error: function () {
+                            alert("请求失败");
+                        },
+                        dataType: "json"
+                    });
+                });
+            });
+    </script>*@
+</html>

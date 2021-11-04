@@ -1,0 +1,168 @@
+﻿@{
+    Layout = null;
+}
+@model IEnumerable<school.Model.VO.OrderVO>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课程信息</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/ad/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/ad/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <!-- Data Tables -->
+    <link href="/ad/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/ad/css/animate.css" rel="stylesheet">
+    <link href="/ad/css/style.css?v=4.1.0" rel="stylesheet">
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>状态 <small> </h5>
+                       
+                        <div class="ibox-tools"> 
+                        </div>
+                        <div style=" float:right; padding-right:10px" >
+                            </div>
+                    </div>
+                    <div class="ibox-content">
+                        <table class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th>学生</th>
+                                    <th>场地名称</th> 
+                                    <th>价格</th>
+                                    <th>时长</th>
+                                    <th>订场姓名</th>
+                                    <th>用户电话</th>
+                                    <th>创建时间</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="gradeX">
+                                        <td><a href="/admin/order/@item.Id">@item.StudentName </a></td>
+                                        <td>
+                                            @item.SchoolName - @item.FieldName
+                                            @*@{
+                                            switch (item.Status)
+                                            {
+                                                case 1:
+                                                    <span>团体课</span>;
+                                                    break;
+                                                case 2:
+                                                    <span>小班课</span>;
+                                                    break;
+                                                case 3:
+                                                    <span>双人课</span>;
+                                                    break;
+                                                case 4:
+                                                    <span>私教课</span>;
+                                                    break;
+                                                case 5:
+                                                    <span>体验课</span>;
+                                                    break;
+                                            }
+                                        }
+                                            -
+                                        @{
+                                            switch (item.AgeCategoryId)
+                                            {
+                                                case 1:
+                                                    <span>精灵</span>;
+                                                    break;
+                                                case 2:
+                                                    <span>曙光</span>;
+                                                    break;
+                                                case 3:
+                                                    <span>韶光</span>;
+                                                    break;
+                                                case 4:
+                                                    <span>菁英</span>;
+                                                    break;
+                                            }
+                                        }*@
+                                    </td>
+
+
+                                    <td>
+                                        @item.Price
+                                    </td>
+                                    <td>@item.Day</td>
+
+
+                                    <td class="center">@item.Name</td>
+                                    <td class="center">@item.Tel</td>
+                                    <td class="center">@item.CreateTime</td>
+                                </tr>
+                                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- 全局js -->
+    <script src="/ad/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/ad/js/bootstrap.min.js?v=3.3.6"></script>
+
+    <script src="/ad/js/plugins/jeditable/jquery.jeditable.js"></script>
+    <!-- Data Tables -->
+    <script src="/ad/js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="/ad/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <!-- 自定义js -->
+    <script src="/ad/js/content.js?v=1.0.0"></script>
+
+    <!-- Page-Level Scripts -->
+    <script>
+        $(document).ready(function () {
+            $('.dataTables-example').dataTable();
+
+            /* Init DataTables */
+            var oTable = $('#editable').dataTable();
+
+            /* Apply the jEditable handlers to the table */
+            oTable.$('td').editable('../example_ajax.php', {
+                "callback": function (sValue, y) {
+                    var aPos = oTable.fnGetPosition(this);
+                    oTable.fnUpdate(sValue, aPos[0], aPos[1]);
+                },
+                "submitdata": function (value, settings) {
+                    return {
+                        "row_id": this.parentNode.getAttribute('id'),
+                        "column": oTable.fnGetPosition(this)[2]
+                    };
+                },
+
+                "width": "90%",
+                "height": "100%"
+            });
+
+
+        });
+
+        function fnClickAddRow() {
+            $('#editable').dataTable().fnAddData([
+                "Custom row",
+                "New row",
+                "New row",
+                "New row",
+                "New row"]);
+
+        }
+    </script>
+
+
+  
+</body>
+</html>

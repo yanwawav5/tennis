@@ -1,0 +1,200 @@
+﻿@{
+    Layout = null;
+}
+@model school.Model.VO.TeachingPlanShowMVCVO
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> - 基本表单</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/ad/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/ad/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/ad/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/ad/css/animate.css" rel="stylesheet">
+    <link href="/ad/css/style.css?v=4.1.0" rel="stylesheet">
+
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/common.css">
+
+
+
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <style>
+        .table_fra {
+            padding: 30px 10px 10px 10px;
+        }
+
+        table {
+            border: 1px solid #dddddd;
+            border-bottom: 0px solid #dddddd;
+            border-right: 0px solid #dddddd;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+            table td {
+                border-bottom: 1px solid #dddddd;
+                border-right: 1px solid #dddddd;
+                padding: 12px;
+                vertical-align: top;
+            }
+
+                table td.weight {
+                    font-weight: 700;
+                }
+
+                table td.center {
+                    text-align: center;
+                }
+
+                table td .con {
+                    min-height: 19px;
+                }
+
+        .green {
+            color: #024502;
+        }
+
+        .orange {
+            color: #f36827;
+        }
+
+        .purple {
+            color: #9d75ce;
+        }
+
+        .red {
+            color: #b3172d;
+        }
+
+        .blue {
+            color: #4049a4;
+        }
+    </style>
+
+
+</head>
+<body class="gray-bg">
+    <div class="table_fra" id="printBox">
+        <table>
+            <tbody>
+                <tr>
+                    <td class="weight center" colspan="3">
+                        <div class="con">@Model.Title</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="con">日期：@Model.Day</div>
+                    </td>
+                    <td colspan="2">
+                        <div class="con">时间和时长：@Model.TeacherCourseTime</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div class="con">学员人数：@Model.</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div class="con">需要装备：@Model.Equip</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div class="con">课程目标：@Model.Target</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="weight">时间</td>
+                    <td class="weight">课程内容</td>
+                    <td class="weight">教学过程</td>
+                </tr>
+               @foreach (var item in Model.ItemList)
+               {
+                <tr class="green">
+                    <td>
+                        <div class="con">@item.TimeLength</div>
+                        <div class="con">@item.TimeSlot</div>
+                    </td>
+                    <td><div class="con">@item.CategoryName</div></td>
+                    <td><div class="con">@item.Points</div></td>
+                </tr>
+               }
+                @*<tr class="green">
+                    <td>
+                        <div class="con">12min</div>
+                        <div class="con">9:00-9:12</div>
+                    </td>
+                    <td><div class="con">热身和球拍热身</div></td>
+                    <td><div class="con">介绍课程目标，强调安全问题</div></td>
+                </tr>
+                <tr class="orange">
+                    <td>
+                        <div class="con">12min</div>
+                        <div class="con">9:00-9:12</div>
+                    </td>
+                    <td><div class="con">技术练习</div></td>
+                    <td><div class="con">介绍课程目标，强调安全问题</div></td>
+                </tr>
+                <tr class="purple">
+                    <td>
+                        <div class="con">12min</div>
+                        <div class="con">9:00-9:12</div>
+                    </td>
+                    <td><div class="con">比赛、竞赛练习</div></td>
+                    <td><div class="con">介绍课程目标，强调安全问题</div></td>
+                </tr>
+                <tr class="red">
+                    <td>
+                        <div class="con">12min</div>
+                        <div class="con">9:00-9:12</div>
+                    </td>
+                    <td><div class="con">放松：静态拉伸</div></td>
+                    <td><div class="con">介绍课程目标，强调安全问题</div></td>
+                </tr>
+                <tr class="blue">
+                    <td>
+                        <div class="con">12min</div>
+                        <div class="con">9:00-9:12</div>
+                    </td>
+                    <td>
+                        <div class="con">球员评估</div>
+                        <div class="con"></div>
+                        <div class="con">教学评估</div>
+                    </td>*@
+                    <td><div class="con">介绍课程目标，强调安全问题</div></td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+    <button onclick="printDeal()">打印</button>
+    <script>
+        function printDeal() {
+            var printBox = document.getElementById('printBox');
+            //拿到打印的区域的html内容
+            var newContent = printBox.innerHTML;
+            //将旧的页面储存起来，当打印完成后返给给页面。
+            var oldContent = document.body.innerHTML;
+            //赋值给body
+            document.body.innerHTML = newContent;
+            //执行window.print打印功能
+            window.print();
+            // 重新加载页面，以刷新数据。以防打印完之后，页面不能操作的问题
+            window.location.reload();
+            document.body.innerHTML = oldContent;
+            return false;
+        }
+    </script>
+
+</body>
+
+</html>

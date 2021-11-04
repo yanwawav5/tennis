@@ -1,0 +1,110 @@
+﻿@{
+    Layout = null;
+}
+@model school.Model.DAO.M_Menu
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>微信菜单</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/common.css">
+
+    <link href="/ad/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/ad/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/ad/css/animate.css" rel="stylesheet">
+    <link href="/ad/css/plugins/summernote/summernote.css" rel="stylesheet">
+    <link href="/ad/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
+    <link href="/ad/css/style.css?v=4.1.0" rel="stylesheet">
+
+
+
+</head>
+
+
+
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>内容</h5>
+                        <div class="ibox-tools">
+
+                            <ul class="dropdown-menu dropdown-user"></ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label>菜单</label>
+                                        <textarea type="test" id="menuMain" class="form-control" rows="36">@Model.MenuMain </textarea>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <button type="button" id="btn">保存</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+<!-- 全局js -->
+<script src="/ad/js/jquery.min.js?v=2.1.4"></script>
+<script src="/ad/js/bootstrap.min.js?v=3.3.6"></script>
+
+<!-- 自定义js -->
+<script src="/ad/js/content.js?v=1.0.0"></script>
+<script src="/layui/layui.js"></script>
+<!-- SUMMERNOTE -->
+<script src="/ad/js/plugins/summernote/summernote.min.js"></script>
+<script src="/ad/js/plugins/summernote/summernote-zh-CN.js"></script>
+<script>
+    $(function () {
+        $("#btn").click(function () {
+                $.ajax({
+                    headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'00c11211-0e0c-464b-8e37-33ac40747fb1'}" },
+                    url: "/wapi/Wadmin/SendMenu",
+                    async: false,
+                    type: "POST",
+                    data: JSON.stringify({
+                        "menuMain": $("#menuMain").val(),
+                    }),
+                    // 成功后开启模态框
+                    success:function (res) {
+                       if (res.IsSuccess) {
+                           alert("操作成功"); 
+                       }
+                       else {
+                           alert(res.Message);
+                       }
+                   },
+                    error: function () {
+                        alert("请求失败");
+                    },
+                    dataType: "json"
+                });
+            });
+        });
+</script>
+</html>

@@ -1,0 +1,136 @@
+﻿@{
+    Layout = null;
+}
+@model school.Model.DAO.M_FilePrice
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>场地价格</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico"> 
+
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/common.css">
+
+    <link href="/ad/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/ad/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/ad/css/animate.css" rel="stylesheet">
+    <link href="/ad/css/plugins/summernote/summernote.css" rel="stylesheet">
+    <link href="/ad/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
+    <link href="/ad/css/style.css?v=4.1.0" rel="stylesheet">
+
+
+
+</head>
+
+
+
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>价格</h5>
+                        <div class="ibox-tools">
+                           
+                            <ul class="dropdown-menu dropdown-user">
+                                
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label>时间点</label>
+
+
+                                        <label><input name="sorttime" type="radio" value="15" />15:00</label>
+                                        <label><input name="sorttime" type="radio" value="16" />15:30</label>
+                                        <label><input name="sorttime" type="radio" value="17" />16:00</label>
+                                        <label><input name="sorttime" type="radio" value="18" />16:30</label>
+                                        <label><input name="sorttime" type="radio" value="19" />17:00</label>
+                                        <label><input name="sorttime" type="radio" value="20" />17:30</label>
+                                        <label><input name="sorttime" type="radio" value="21" />18:00</label>
+                                        <label><input name="sorttime" type="radio" value="22" />18:30</label>
+                                        <label><input name="sorttime" type="radio" value="23" />19:00</label>
+                                        <label><input name="sorttime" type="radio" value="24" />19:30</label>
+                                        <label><input name="sorttime" type="radio" value="25" />20:00</label>   
+                                    </div> 
+                                    <div class="form-group">
+                                        <label>白天价格</label>
+                                        <input type="text" id="Price" class="form-control" value="@Model.Price" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>晚上价格</label>
+                                        <input type="text" id="PriceSec" class="form-control" value="@Model.PriceSec" />
+                                    </div>
+                                   
+                                    <div>
+                                        <button type="button" id="btn">保存</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div> 
+</body>
+<!-- 全局js -->
+<script src="/ad/js/jquery.min.js?v=2.1.4"></script>
+<script src="/ad/js/bootstrap.min.js?v=3.3.6"></script>
+
+<!-- 自定义js -->
+<script src="/ad/js/content.js?v=1.0.0"></script>
+<script src="/layui/layui.js"></script>
+<script>
+    $("input[type=radio][name=sorttime][value=@Model.sorttime]").attr("checked", 'checked');
+</script>
+<script>
+
+    $(function () {
+
+        $("#btn").click(function () {
+            $.ajax({
+                headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'00c11211-0e0c-464b-8e37-33ac40747fb1'}" },
+                url: "/wapi/wxSmall/SaveFilePrice",
+                async: true,
+                type: "POST",
+                data: JSON.stringify({
+                    "price": $("#Price").val(),
+                    "priceSec": $("#PriceSec").val(),
+                    "sortime": $('input[name="sorttime"]:checked').val()
+                }),
+                // 成功后开启模态框
+                success: function () {
+                    alert("操作成功");
+                    window.location.href = "/admin/FilePric";
+                },
+                error: function () {
+                    alert("请求失败");
+                },
+                dataType: "json"
+            });
+        });
+    });
+    </script>
+    </html>

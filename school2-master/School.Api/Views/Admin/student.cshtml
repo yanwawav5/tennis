@@ -1,0 +1,166 @@
+﻿@{
+    Layout = null;
+}
+@model school.Model.DAO.M_Student
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> - 基本表单</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/ad/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/ad/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/ad/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/ad/css/animate.css" rel="stylesheet">
+    <link href="/ad/css/style.css?v=4.1.0" rel="stylesheet">
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>内容</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="form_editors.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li>
+                                    <a href="form_editors.html#">选项1</a>
+                                </li>
+                                <li>
+                                    <a href="form_editors.html#">选项2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <form role="form">
+
+                                    <div class="form-group">
+                                        <label>昵称</label><br />
+                                        @Model.NickName
+                                    </div>
+                                    <div class="form-group">
+                                        <label>真实姓名</label><br />
+                                        <input type="text" id="FullName" value="@Model.FullName" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>电话</label><br />
+                                        <input type="text" id="Tel" value="@Model.Tel" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>地区</label><br />
+                                        @Model.Country  @Model.Province @Model.City
+                                    </div>
+                                    <div class="form-group">
+                                        <label>头像</label><br />
+                                        <img src="@Model.HeadImgUrl" style="width:150px;height:150px" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>类型</label>
+                                        <br />
+                                        <label><input name="types" type="radio" value="0" />学生</label>
+                                        <label><input name="types" type="radio" value="1" />老师</label>
+                                    </div>
+                                    <div>
+                                        <button type="button" id="btn">提交</button>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- 全局js -->
+    <script src="/ad/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/ad/js/bootstrap.min.js?v=3.3.6"></script>
+    <!-- 自定义js -->
+    <script src="/ad/js/content.js?v=1.0.0"></script>
+    <script>
+        $("input[type=radio][name=types][value=@Model.Type]").attr("checked", 'checked');
+    </script>
+
+
+
+
+    <script>
+
+        $(function () {  
+            $("#btn").click(function () {
+                var types = $('input[name="types"]:checked').val(); 
+                $.ajax({
+                    headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'00c11211-0e0c-464b-8e37-33ac40747fb1'}" },
+                    url: "/wapi/wxsmall/CreateOrUpdateStudent",
+                    async: true,
+                    type: "POST",
+                    data: JSON.stringify({
+                        "Id": "@Model.Id",
+                        "FullName": $("#FullName").val(),
+                        "Tel": $("#Tel").val(),
+                        "Types": types,
+                        "FullName": $("#FullName").val(),
+                        "UserId": "...",
+                    }),
+                    // 成功后开启模态框
+                    success: function () {
+                        window.location.href = "/admin/studentList";
+                        alert("操作成功");
+                    },
+                    error: function () {
+                        alert("请求失败");
+                    },
+                    dataType: "json"
+                });
+            });
+        });
+        @*function query() {
+            var types = $('input[name="types"]:checked').val();
+            $.ajax({
+                url: "/wapi/wxsmall/CreateOrUpdateStudent",
+                async: true,
+                type: "POST",
+                data: {
+                    "Id": @Model.Id,
+                    "FullName": $("#FullName").val(),
+                    "Tel": $("#Tel").val(),
+                    "Types": types,
+                    "FullName": $("#FullName").val(),
+                    "UserId": "...",
+                },
+                // 成功后开启模态框
+                success: function () {
+                    window.location.href = "/admin/studentList";
+                    alert("操作成功");
+                },
+                error: function () {
+                    alert("请求失败");
+                },
+                dataType: "json"
+            });
+        }*@
+    </script>
+
+
+</body>
+</html>

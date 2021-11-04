@@ -1,0 +1,220 @@
+﻿@{  Layout = null;}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>注册</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <style type="text/css">
+        html {
+            /* font-size: 17.6621px; */
+        }
+    </style>
+</head>
+<body>
+    <img class="register_body_back" src="/images/register_back.png" />
+    <div class="container-card">
+        <div class="card-bg">
+            <!-- 下面的是背景里的元素 -->
+            <div class="embellish"></div>
+            <div class="school-skin">
+                <!-- 这里是顶部的分校显示 -->
+                <div class="school-info">
+                    <div class="school-name">
+                        <img src="/images/register_back_03.png" alt="">
+                        <div>昱隆网球学院（下马坊校区）</div>
+                    </div>
+                    <div class="img-skin">
+                        <img src="/images/logo_03.png">
+                    </div>
+                </div>
+                <div class="prompt-info">
+                    <!-- <div _tmplitem="1"  class="prompt-free">免费领取</div> -->
+                    <div class="prompt-text">领取五十元代金券</div>
+                </div>
+                <div class="school-desc">
+                    <div class="school-address">地址：营苑北路2号浅草明苑小区</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-card-after" style="display: none;">
+        <div class="card-bg">
+            <div class="embellish"></div>
+            <div class="school-skin">
+                <!-- 这里是顶部的分校显示 -->
+                <div class="school-info">
+                    <!-- //oss.6tiantian.com/img_MGYzYzA3ODUtMTkwMi00OWVkLTg5Y2ItOTJkNTMxZDA0MTIw.png -->
+                    <div class="/school-name">
+                        <img src="/images/register_back_03.png" alt="">
+                        <div>昱隆网球学院（下马坊校区）</div>
+                    </div>
+                    <div class="img-skin">
+                        <img src="/images/logo_03.png">
+                    </div>
+                </div>
+                <div class="prompt-info-success">
+                    <img src="/images/register_back_04.png" alt="">
+                    <div class="has-text-skin">五十元代金券领取成功</div>
+                </div>
+                <div class="school-desc">
+                    <div class="school-address">地址：营苑北路2号浅草明苑小区</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="register_box">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input type="number" name="phone" placeholder="输入手机号" id="phone" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block verfity">
+                    <input type="number" name="verfity" placeholder="输入验证码" autocomplete="off" class="layui-input">
+                </div>
+                <div class="ver_btn" id="ver_btn">发送验证码</div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn register_submit" lay-submit lay-filter="register">获取代金券</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="success_tip_box_fra">
+        <div class="success_tip_box" style="display: block;">
+            <div class="con">
+                @("你的朋友"+ViewBag.NickName)，为你在昱隆网球学院的第一次体验课贡献了<span>50元</span>代金券，它刚好可以抵扣您本次体验的所有消费，<span>昱隆网球</span>是南京最好的网球培训品牌，一定要感谢你的朋友
+            </div>
+            <div class="sure" onclick="closeTip()">确定</div>
+        </div>
+
+    </div>
+
+    <div class="container-after" style="display: block;position: relative;padding-bottom: 20px;">
+        <div class="content-layout-after">
+            <div class="text-prompt-div">
+                <div class="has-text-prompt">长按识别二维码</div>
+                <div class="has-text-prompt1">老师也会尽快联系你哟</div>
+            </div>
+            <div class="qrcode-div">
+                <img style="width:2rem;height:6.13rem;margin-top:0.5rem;" src="/images/register_back05.png"
+                     alt="">
+                <div id="qrcode" style="width:8rem;height:8rem;">
+                    <img style="width: 8rem; height: 8rem; display: block;" src="/images/cion_qrcode.jpg">
+                </div>
+                <img style="width:2.44rem;height:6.38rem;margin-top:3rem;" src="/images/register_back06.png"
+                     alt="">
+            </div>
+        </div>
+    </div>
+    <script src="/js/jquery.js"></script>
+    <script src="/layui/layui.js"></script>
+</body>
+<script type="text/javascript">
+    layui.use('form', function () {
+        var form = layui.form;
+        //执行实例
+        //监听提交
+        form.on('submit(register)', function (data) {
+            console.log(data.field);
+            if (data.field.phone == '') {
+                layer.msg("请输入手机号！");
+                return false;
+            }
+            if (!ismsj(data.field.phone)) {
+                layer.msg("手机格式不正确！");
+                return false;
+            }
+            if (data.field.verfity == '') {
+                layer.msg("请输入验证码！");
+                return false;
+            }
+
+            $(".container-card").css("display", "none");
+            $(".container-card-after").css("display", "block");
+            $("success_tip_box").css("display", "block");
+            $(".register_box").css("display", "none");
+
+              $.ajax({
+                    headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'@ViewBag.Uid'}" },
+                  url: "/wapi/User/SaveCode?phone=" + data.field.phone + "&code="+data.field.verfity,
+                    type: "get",
+                    success: function (data) {
+                        if (!data.IsSuccess) {
+                            alert(data.Message);
+                            return false;
+                        }
+                        else {
+                            pr = data.model.Prize;
+                            prn = data.model.PrizeNum;
+                        }
+
+                    }, error: function (res) {
+                        alert("操作失败！");
+                    }
+                });
+
+            return false;
+        });
+    })
+
+    function ismsj(str) {
+        var regMobile = /^0{0,1}(13[0-9]|14[0-9]|15[0-9]|18[0-9])[0-9]{8}$/;
+        if (regMobile.test(str)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    var ver_btn_name = "";
+    var ver_flag = 0;
+    $("#ver_btn").click(function () {
+        if (ver_flag == 1) {
+            return;
+        }
+          $.ajax({
+                    headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'@ViewBag.Uid'}" },
+              url: "/wapi/User/SaveMsg?phone=" + $("#phone").val()+"&bs=5&id=@ViewBag.Id",
+                    type: "get",
+                    success: function (data) {
+                        if (!data.IsSuccess) {
+                            alert(data.Message);
+                            return false;
+                        }
+                        else {
+                            pr = data.model.Prize;
+                            prn = data.model.PrizeNum;
+                        }
+
+                    }, error: function (res) {
+                        alert("操作失败！");
+                    }
+                });
+
+
+
+        ver_flag = 1;
+        var that = this;
+        $(that).text("60s")
+        var count = 60;
+        var ver_while = setInterval(function () {
+            if (count == 0) {
+                $(that).text("发送验证码")
+                clearInterval(ver_while);
+            }
+            count--;
+            $(that).text(count + "s");
+        }, 1000);
+    })
+
+    function closeTip() {
+        $(".success_tip_box_fra").css("display", "none")
+    }
+</script>
+</html>

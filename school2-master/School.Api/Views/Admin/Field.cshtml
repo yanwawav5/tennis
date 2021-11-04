@@ -1,0 +1,283 @@
+﻿@{
+    Layout = null;
+}
+@model school.Model.DAO.M_Field
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>场地</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    @*  <link href="/ad/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+        <link href="/ad/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+        <link href="/ad/css/plugins/iCheck/custom.css" rel="stylesheet">
+        <link href="/ad/css/animate.css" rel="stylesheet">
+        <link href="/ad/css/style.css?v=4.1.0" rel="stylesheet">*@
+
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/common.css">
+
+    <link href="/ad/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/ad/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/ad/css/animate.css" rel="stylesheet">
+    <link href="/ad/css/plugins/summernote/summernote.css" rel="stylesheet">
+    <link href="/ad/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
+    <link href="/ad/css/style.css?v=4.1.0" rel="stylesheet">
+
+
+
+</head>
+
+
+
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>内容</h5>
+                        <div class="ibox-tools">
+
+                            <ul class="dropdown-menu dropdown-user"></ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label>名称</label>
+                                        <input type="text" id="Name" class="form-control" value="@Model.Name" />
+                                    </div>
+                                    @*<div class="form-group">
+            <label>电话</label>
+            <input type="text" id="Tel" class="form-control" value="@Model.Tel" />
+
+        </div>*@
+                                    <div class="form-group">
+                                        <label>地址</label>
+                                        <input type="text" id="Address" class="form-control" value="@Model.Address" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>时间点</label>
+                                        <label><input name="sorttime" type="radio" value="15" />15:00</label>
+                                        <label><input name="sorttime" type="radio" value="16" />15:30</label>
+                                        <label><input name="sorttime" type="radio" value="17" />16:00</label>
+                                        <label><input name="sorttime" type="radio" value="18" />16:30</label>
+                                        <label><input name="sorttime" type="radio" value="19" />17:00</label>
+                                        <label><input name="sorttime" type="radio" value="20" />17:30</label>
+                                        <label><input name="sorttime" type="radio" value="21" />18:00</label>
+                                        <label><input name="sorttime" type="radio" value="22" />18:30</label>
+                                        <label><input name="sorttime" type="radio" value="23" />19:00</label>
+                                        <label><input name="sorttime" type="radio" value="24" />19:30</label>
+                                        <label><input name="sorttime" type="radio" value="25" />20:00</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>白天价格</label>
+                                        <input type="text" id="Price" class="form-control" value="@Model.Price" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>夜场价格</label>
+                                        <input type="text" id="Pricesec" class="form-control" value="@Model.Pricesec" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>x</label>
+                                        <input type="text" id="X" class="form-control" value="@Model.X" />
+                                    </div><div class="form-group">
+                                        <label>y</label>
+                                        <input type="text" id="Y" class="form-control" value="@Model.Y" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phone</label>
+                                        <input type="text" id="Phone" class="form-control" value="@Model.Phone" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>排序</label>
+                                        <input type="text" id="Sort" class="form-control" value="@Model.Sort" />
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="send_task_box">
+                                            <div id="upload">
+                                                <image class="icon" id="imgs" src="@(string.IsNullOrEmpty(Model.Pic)?"/images/icon_camera.png":Model.Pic)" style="width:50px;height:50px;" bindtap="chooseVideo"></image>
+                                                <div class="name" bindtap="chooseVideo">
+                                                    图片
+                                                    <div class="desc">相册/拍视频</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>内容</label>
+                                        <div class="summernote">
+                                            @Model.Main
+                                        </div>
+                                    </div>
+
+
+                                    <div>
+                                        <button type="button" id="btn">保存</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+<!-- 全局js -->
+<script src="/ad/js/jquery.min.js?v=2.1.4"></script>
+<script src="/ad/js/bootstrap.min.js?v=3.3.6"></script>
+
+<!-- 自定义js -->
+<script src="/ad/js/content.js?v=1.0.0"></script>
+<script src="/layui/layui.js"></script>
+<!-- SUMMERNOTE -->
+<script src="/ad/js/plugins/summernote/summernote.min.js"></script>
+<script src="/ad/js/plugins/summernote/summernote-zh-CN.js"></script>
+
+<script>
+    $("input[type=radio][name=sorttime][value=@Model.sorttime]").attr("checked", 'checked');
+</script>
+<script type="text/javascript">
+
+    function uploadSummerPic(file, editor, $editable) {
+        var fd = new FormData();
+        fd.append("file", file);
+        $.ajax({
+            type: "POST",
+            url: "/wapi/User/UploadP",
+            data: fd,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                editor.insertImage($editable, data.Body.Model.Str);
+            }
+        });
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        $('.summernote').summernote({
+            lang: 'zh-CN',
+            onImageUpload: function (files, editor, $editable) {
+                uploadSummerPic(files[0], editor, $editable);
+            }
+        });
+
+    });
+
+    var edit = function () {
+        $("#eg").addClass("no-padding");
+        $('.click2edit').summernote({
+            lang: 'zh-CN',
+            focus: true
+        });
+    };
+    var save = function () {
+        $("#eg").removeClass("no-padding");
+        var aHTML = $('.click2edit').code(); //save HTML If you need(aHTML: array).
+        $('.click2edit').destroy();
+    };
+</script>
+<script>
+
+    var src = "@Model.Pic";
+    layui.use('upload', function () {
+        var upload = layui.upload;
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#upload' //绑定元素
+            , url: '/wapi/user/UploadP/' //上传接口
+            , accept: "file"
+            , auto: true //是否开启自动上传
+            , choose: function (obj) {
+                var files = obj.pushFile();
+                //预读本地文件，如果是多文件，则会遍历。(不支持ie8/9)
+                obj.preview(function (index, file, result) {
+                    console.log(index); //得到文件索引
+                    console.log(file); //得到文件对象
+                    console.log(result); //得到文件base64编码，比如图片
+                    var flag = 0;
+                    var arr = (file.type).split("/");
+                    if (true) { flag = 1 }
+                    delete files[index];
+                    if (flag == 1) {
+                        layer.msg("上传成功");
+
+                        //  $("#camrea_tip").css("display", "block");
+                    } else {
+                        layer.msg("只支持上传视频格式~")
+                    }
+
+                });
+            }
+            //, bindAction: "#btn"
+            , done: function (res) {
+                $("#imgs").attr("src", res.Body.Model.Str);
+                src = res.Body.Model.Str;
+            }
+            , error: function (res) {
+                alert("上传失败！");
+            }
+        });
+    });
+
+
+    $(function () {
+        var id ="@ViewBag.Id";
+        $("#btn").click(function () {
+                var sHTML = $('.summernote').code();
+                $("div#html").html(sHTML);
+                $.ajax({
+                    headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'00c11211-0e0c-464b-8e37-33ac40747fb1'}" },
+                    url: "/wapi/Wadmin/CreateOrUpdeteField",
+                    async: true,
+                    type: "POST",
+                    data: JSON.stringify({
+                        "main": sHTML,
+                        "id": id,
+                        "Address": $("#Address").val(),
+                        "sorttime": $('input[name="sorttime"]:checked').val(),
+                        "Name": $("#Name").val(),
+                        "Price": $("#Price").val(),
+                        "Pricesec": $("#Pricesec").val(),
+                        "SchoolId":"@ViewBag.SchoolId",
+                        "Pic": src,
+                        "Sort": $("#Sort").val(),
+                        "X": $("#X").val(),
+                        "Y": $("#Y").val(),
+                        "Phone": $("#Phone").val()
+                    }),
+                    // 成功后开启模态框
+                    success: function () {
+                        alert("操作成功");
+                        window.location.href = "/admin/FieldList?id=@ViewBag.SchoolId";
+                            },
+                    error: function () {
+                        alert("请求失败");
+                    },
+                    dataType: "json"
+                });
+            });
+        });
+</script>
+</html>

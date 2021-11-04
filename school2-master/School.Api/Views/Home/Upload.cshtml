@@ -1,0 +1,106 @@
+﻿@{  
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>上传作业</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <style type="text/css">
+        body {
+            background-color: #efefef; 
+        }
+    </style>
+</head>
+<body>
+    <div class="send_task_box">
+        <div id="upload">
+            <image class="icon" src="/images/icon_camera.png" style="width:50px;height:50px;" bindtap="chooseVideo"></image>
+            <div class="name" bindtap="chooseVideo">
+                上传作业
+                <div class="desc">相册/拍视频</div>
+            </div>
+        </div>
+        <div class="btn_group float_after" id="camrea_tip" style="display: none;">
+            <div class="tip float_left">您已选择视频，是否提交？</div>
+            <div class="btn float_right" id="btn">提交</div>
+        </div>
+    </div>
+    <script src="/js/jquery.js"></script>
+    <script src="/layui/layui.js"></script>
+</body>
+<script type="text/javascript">
+    var src = "";
+    layui.use('upload', function () {
+        var upload = layui.upload;
+
+        //执行实例
+		var upload_index= "";
+        var uploadInst = upload.render({
+            elem: '#upload' //绑定元素
+            , url: '/wapi/user/Upload/' //上传接口
+            , accept: "file"
+            , auto: true //是否开启自动上传
+      //       , choose: function (obj) {
+      //           var files = obj.pushFile();
+      //           //预读本地文件，如果是多文件，则会遍历。(不支持ie8/9)
+      //           obj.preview(function (index, file, result) {
+      //               // console.log(index); //得到文件索引
+      //               // console.log(file); //得到文件对象
+      //               // console.log(result); //得到文件base64编码，比如图片
+      //               var flag = 0;
+      //               var arr = (file.type).split("/");
+      //               if (arr[0] == "video") { flag = 1 }
+      //               delete files[index];
+      //               if (flag == 1) {
+
+						// upload_index = layer.load(0, {shade: false});
+      //               } else {
+      //                   layer.msg("只支持上传视频格式~")
+      //               }
+
+      //           });
+      //       }
+            //, bindAction: "#btn"
+			,before: function(obj){
+				upload_index = layer.load(0);
+			}
+            , done: function (res) {
+                src = res.Body.Model.Str;
+				layer.close(upload_index)
+				$("#camrea_tip").css("display", "block");
+            }
+            , error: function (res) {
+                alert("请等待上传完文件再提交");
+					return false;
+            }
+        });
+    });
+
+
+    $(function () {
+        $("#btn").click(function () {
+            $.ajax({
+                headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'@ViewBag.Id'}" },
+                url: "/wapi/User/SaveShare",
+                type: "post",
+                dataType: "json",
+                data: JSON.stringify({
+                    "UserKey": '@ViewBag.Id',
+                    "Pic":src
+                }),
+                success: function (data) {
+                    if (data.IsSuccess)
+                        location.href = @System.Web.Configuration.WebConfigurationManager.AppSettings["DomainName"] + "/home/signin?state=" + data.Body.Model.Id;
+                }, error: function (res) {
+     //                alert("请等待上传完文件再提交");
+					// return false;
+                }
+            })
+        });
+    })
+</script>
+</html>

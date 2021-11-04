@@ -1,0 +1,94 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1209
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "school.Common", "School.Common\school.Common.csproj", "{65CE6A43-367D-45B9-AA63-E6AB757F23D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BLL", "BLL", "{C63D2869-90C1-4838-9DB7-727E29BCCF5E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{74F8C9CC-5534-4D87-BC5C-51DA16A1CC02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "school.BLL", "School.BLL\school.BLL.csproj", "{ECEB5D13-A7BC-4117-AF40-E6245DB8AF2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "school.IBLL", "School.IBLL\school.IBLL.csproj", "{A0B53EFC-7AD5-473B-A691-AD4D78AE3F7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "school.DAL", "School.DAL\school.DAL.csproj", "{5E13F2C7-6BFC-4D2A-81C2-4DD8E27BA096}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "school.IDAL", "School.IDAL\school.IDAL.csproj", "{C9355E69-3157-45DE-B716-2A4590799D4B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{16124EF6-F5E8-44C5-AD23-5010BE130BC7}"
+	ProjectSection(SolutionItems) = preProject
+		School.Lib\EPPlus.dll = School.Lib\EPPlus.dll
+		School.Lib\log4net.dll = School.Lib\log4net.dll
+		School.Lib\Microsoft.Practices.ServiceLocation.dll = School.Lib\Microsoft.Practices.ServiceLocation.dll
+		School.Lib\Microsoft.Practices.Unity.Configuration.dll = School.Lib\Microsoft.Practices.Unity.Configuration.dll
+		School.Lib\Microsoft.Practices.Unity.dll = School.Lib\Microsoft.Practices.Unity.dll
+		School.Lib\Microsoft.Practices.Unity.Interception.Configuration.dll = School.Lib\Microsoft.Practices.Unity.Interception.Configuration.dll
+		School.Lib\Microsoft.Practices.Unity.Interception.dll = School.Lib\Microsoft.Practices.Unity.Interception.dll
+		School.Lib\NPOI.dll = School.Lib\NPOI.dll
+		School.Lib\NPOI.OOXML.dll = School.Lib\NPOI.OOXML.dll
+		School.Lib\NPOI.OpenXml4Net.dll = School.Lib\NPOI.OpenXml4Net.dll
+		School.Lib\NPOI.OpenXmlFormats.dll = School.Lib\NPOI.OpenXmlFormats.dll
+		School.Lib\ServiceStack.Common.dll = School.Lib\ServiceStack.Common.dll
+		School.Lib\ServiceStack.Common.xml = School.Lib\ServiceStack.Common.xml
+		School.Lib\ServiceStack.Interfaces.dll = School.Lib\ServiceStack.Interfaces.dll
+		School.Lib\ServiceStack.OrmLite.dll = School.Lib\ServiceStack.OrmLite.dll
+		School.Lib\ServiceStack.OrmLite.SqlServer.dll = School.Lib\ServiceStack.OrmLite.SqlServer.dll
+		School.Lib\ServiceStack.OrmLite.xml = School.Lib\ServiceStack.OrmLite.xml
+		School.Lib\ServiceStack.Text.dll = School.Lib\ServiceStack.Text.dll
+		School.Lib\ServiceStack.Text.xml = School.Lib\ServiceStack.Text.xml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "school.Model", "School.Model\school.Model.csproj", "{2CD3E63D-1175-4F3C-A0BF-0FD29206981B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "school.Api", "School.Api\school.Api.csproj", "{63CC78DE-E9CD-4CCD-AD5C-283DFFFC0B08}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65CE6A43-367D-45B9-AA63-E6AB757F23D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65CE6A43-367D-45B9-AA63-E6AB757F23D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65CE6A43-367D-45B9-AA63-E6AB757F23D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65CE6A43-367D-45B9-AA63-E6AB757F23D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECEB5D13-A7BC-4117-AF40-E6245DB8AF2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECEB5D13-A7BC-4117-AF40-E6245DB8AF2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECEB5D13-A7BC-4117-AF40-E6245DB8AF2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECEB5D13-A7BC-4117-AF40-E6245DB8AF2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0B53EFC-7AD5-473B-A691-AD4D78AE3F7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0B53EFC-7AD5-473B-A691-AD4D78AE3F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0B53EFC-7AD5-473B-A691-AD4D78AE3F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0B53EFC-7AD5-473B-A691-AD4D78AE3F7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E13F2C7-6BFC-4D2A-81C2-4DD8E27BA096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E13F2C7-6BFC-4D2A-81C2-4DD8E27BA096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E13F2C7-6BFC-4D2A-81C2-4DD8E27BA096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E13F2C7-6BFC-4D2A-81C2-4DD8E27BA096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9355E69-3157-45DE-B716-2A4590799D4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9355E69-3157-45DE-B716-2A4590799D4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9355E69-3157-45DE-B716-2A4590799D4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9355E69-3157-45DE-B716-2A4590799D4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CD3E63D-1175-4F3C-A0BF-0FD29206981B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CD3E63D-1175-4F3C-A0BF-0FD29206981B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CD3E63D-1175-4F3C-A0BF-0FD29206981B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CD3E63D-1175-4F3C-A0BF-0FD29206981B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63CC78DE-E9CD-4CCD-AD5C-283DFFFC0B08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63CC78DE-E9CD-4CCD-AD5C-283DFFFC0B08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63CC78DE-E9CD-4CCD-AD5C-283DFFFC0B08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63CC78DE-E9CD-4CCD-AD5C-283DFFFC0B08}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ECEB5D13-A7BC-4117-AF40-E6245DB8AF2A} = {C63D2869-90C1-4838-9DB7-727E29BCCF5E}
+		{A0B53EFC-7AD5-473B-A691-AD4D78AE3F7E} = {C63D2869-90C1-4838-9DB7-727E29BCCF5E}
+		{5E13F2C7-6BFC-4D2A-81C2-4DD8E27BA096} = {74F8C9CC-5534-4D87-BC5C-51DA16A1CC02}
+		{C9355E69-3157-45DE-B716-2A4590799D4B} = {74F8C9CC-5534-4D87-BC5C-51DA16A1CC02}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2A66B20A-2734-4984-BF43-17E84CC35519}
+	EndGlobalSection
+EndGlobal

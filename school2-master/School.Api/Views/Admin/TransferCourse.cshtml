@@ -1,0 +1,250 @@
+﻿@{
+    Layout = null;
+}
+@model school.Model.TO.Response.StudentCourseOneVO
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> - 学生转课</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/ad/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/ad/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/ad/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/ad/css/animate.css" rel="stylesheet">
+    <link href="/ad/css/style.css?v=4.1.0" rel="stylesheet">
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>学生转课 <small>简单登录表单示例</small></h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user"></ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label>姓名</label>
+                                        <br />
+                                        <input type="text" id="studentName" value="@Model.StudentName" />
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label>电话</label><br />
+                                        <input type="Tel" id="Tel" value="@Model.StudentTel" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>类型</label>
+                                        <br />
+                                        <label><input name="AgeCategoryId" type="radio" value="1" />精灵</label>
+                                        <label><input name="AgeCategoryId" type="radio" value="2" />曙光</label>
+                                        <label><input name="AgeCategoryId" type="radio" value="3" />青春</label>
+                                        <label><input name="AgeCategoryId" type="radio" value="4" />韶光</label>
+                                        <label><input name="AgeCategoryId" type="radio" value="5" />菁英</label>
+                                        <br />
+                                        <label><input name="CategoryId" type="radio" value="1" />团体课</label>
+                                        <label><input name="CategoryId" type="radio" value="2" />小班课</label>
+                                        <label><input name="CategoryId" type="radio" value="3" />双人课</label>
+                                        <label><input name="CategoryId" type="radio" value="4" />私教课</label>
+                                        <label><input name="CategoryId" type="radio" value="5" />体验课</label>
+                                        <label><input name="CategoryId" type="radio" value="6" />三人课</label>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>课程名称</label><br />
+                                        <select id="courseId" style="width:300px;height:22px">
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>剩余课时</label>
+                                        <br />
+                                        <input type="text" id="surplusClassTimes" value="" />
+                                    </div>
+                                    <div>
+                                        <button type="button" id="btn">提交</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- 全局js -->
+    <script src="/ad/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/ad/js/bootstrap.min.js?v=3.3.6"></script>
+    <!-- 自定义js -->
+    <script src="/ad/js/content.js?v=1.0.0"></script>
+    <!-- iCheck -->
+    <script src="/ad/js/plugins/iCheck/icheck.min.js"></script>
+
+
+    <script>
+        $(function () {
+            var id = "@Model.Id";
+            $("#btn").click(function () {
+                var categoryId = $('input:radio[name="CategoryId"]:checked').val();
+                var ageCategoryId = $('input:radio[name="AgeCategoryId"]:checked').val();
+                var couseId = $("#courseId").val();
+                var surplusClassTimes = $("#surplusClassTimes").val();
+                if (couseId == "") {
+                    alert("请选择课程");
+                    return;
+                }
+                if (surplusClassTimes == "") {
+                    alert("请填写剩余课时");
+                    return;
+                }
+                    $.ajax({
+                        headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'00c11211-0e0c-464b-8e37-33ac40747fb1'}" },
+                        url: "/wapi/Wadmin/TransferStudentCourse",
+                        async: true,
+                        type: "POST",
+                        data: JSON.stringify({
+                            "id": id,
+                            "CategoryId": categoryId,
+                            "AgeCategoryId": ageCategoryId,
+                            "CourseId": couseId,
+                            "SurplusClassTimes": surplusClassTimes
+                        }),
+                        // 成功后开启模态框
+                        success: function (res) {
+                            if (res.IsSuccess) {
+                                alert("操作成功");
+                                window.location.href = "/admin/studentCourseList";
+                            } else {
+                                alert("操作失败");
+                            }
+                        },
+                        error: function () {
+                            alert("请求失败");
+                        },
+                        dataType: "json"
+                    });
+             });
+        });
+        //改变年龄类型
+        $("input:radio[name=AgeCategoryId]").change(function () {
+            var categoryId = $('input:radio[name="CategoryId"]:checked').val();
+            var ageCategoryId = $('input:radio[name="AgeCategoryId"]:checked').val();
+            if (categoryId != undefined && categoryId != null && categoryId != '') {
+                $("#courseId").empty();
+                $("#surplusClassTimes").val("");
+            $.ajax({
+                headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'00c11211-0e0c-464b-8e37-33ac40747fb1'}" },
+                url: "/wapi/Wadmin/GetCourseList",
+                type: "POST",
+                data: JSON.stringify({
+                    "categoryId": categoryId,
+                    "ageCategoryId": ageCategoryId
+                }),
+                success: function (res) {
+                    if (res.IsSuccess && res.Code == 0) {
+                        var list = res.Body.List;
+                        var html = "";
+                        html += '<option value = "">请选择课程</option>';
+                        for (var i = 0; i < list.length;i++) {
+                            html += '<option value = "' + list[i].Id + '" >' + list[i].Title + '</option>';
+                        }
+                        $("#courseId").append(html);
+                    }
+                },
+                error: function () {
+                    alert("请求失败");
+                },
+                dataType: "json"
+            });
+            }
+
+        });
+        //改变类型
+        $("input:radio[name=CategoryId]").change(function () {
+            var ageCategoryId = $('input:radio[name="AgeCategoryId"]:checked').val();
+            var categoryId = $('input:radio[name="CategoryId"]:checked').val();
+    
+            if (ageCategoryId != undefined && ageCategoryId != null && ageCategoryId != '') {
+                $("#courseId").empty();
+                $("#surplusClassTimes").val("");
+                $.ajax({
+                headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'00c11211-0e0c-464b-8e37-33ac40747fb1'}" },
+                url: "/wapi/Wadmin/GetCourseList",
+                type: "POST",
+                data: JSON.stringify({
+                    "categoryId": categoryId,
+                    "ageCategoryId": ageCategoryId
+                }),
+                success: function (res){
+                    if (res.IsSuccess && res.Code == 0) {
+                        var list = res.Body.List;
+                        var html = "";
+                        html += '<option value = "">请选择课程</option>';
+                        for (var i = 0; i < list.length; i++) {
+                            html += '<option value = "' + list[i].Id + '" >' + list[i].Title + '</option>';
+                        }
+                        $("#courseId").append(html);
+                    }
+                },
+                error: function () {
+                    alert("请求失败");
+                },
+                dataType: "json"
+            });
+            }
+        });
+        //选择课程，计算出剩余课时
+        $("#courseId").change(function () {
+     
+            var id = "@Model.Id";
+            var couseId = $("#courseId").val();
+            var categoryId = $('input:radio[name="CategoryId"]:checked').val();
+            var ageCategoryId = $('input:radio[name="AgeCategoryId"]:checked').val();
+            $.ajax({
+                headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'00c11211-0e0c-464b-8e37-33ac40747fb1'}" },
+                url: "/wapi/Wadmin/GetSurplusClassTimes",
+                type: "POST",
+                data: JSON.stringify({
+                    "id": id,
+                    "CategoryId": categoryId,
+                    "AgeCategoryId": ageCategoryId,
+                    "CourseId": couseId
+                }),
+                success: function (res) {
+                    if (res.IsSuccess && res.Code == 0) {
+                        $("#surplusClassTimes").val((res.Body.Model.ClassTimes / 2).toFixed(1));
+                    }
+                },
+                error: function () {
+                    alert("请求失败");
+                },
+                dataType: "json"
+            });
+        });
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,264 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>打卡</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <style type="text/css">
+        html {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body style="display: none;">
+    <div class="signIn_back" style="">
+        <img src="/images/icon_signin_back.png" style="width:100%;height:auto;">
+    </div>
+    <div class="signIn_container">
+        <div class="video_fra" style="">
+            <video id="myVideo" src="https://yulong.qiyepro.com/@ViewBag.Url" controls></video>
+        </div>
+        <div class="user_detail_fra">
+            <div class="user_left">
+                <img class="img" src="@ViewBag.Pic"
+                     style="width:54px;height:54px;">
+                <div class="con">
+                    <div class="name back_overflow">@ViewBag.NickName</div>
+                    <div class="desc back_overflow">@ViewBag.Ctime</div>
+                </div>
+            </div>
+            <div class="user_right">
+                <div class="look_box float_left">
+                    <img src="/images/icon_look.png" style="width:15px;height:15px;"><text>0</text>
+                </div>
+                <div class="zan_box float_left" id="zan_box">
+                    <img src="/images/icon_zan.png" style="width:15px;height:15px;"><text>0</text>
+                </div>
+                <div class="float_after"></div>
+                <div class="btn" id="praise_btn">点赞</div>
+            </div>
+        </div>
+        <div class="circular-box float_after">
+            <img class="circular float_left" src="/images/icon_signin_shu.png">
+            <img class="circular float_right" src="/images/icon_signin_shu.png">
+        </div>
+        <div class="students_box">
+            <div class="student_title" id="xs">@ViewBag.NickName 在昱隆网球学院</div>
+            <div class="hw-finish">
+                <div class="desc-text"><a href="https://yulong.qiyepro.com/home/luck?id=@ViewBag.Id">完成了</a></div>
+                <div class="hw-count">@ViewBag.XLCount </div>
+                <div class="desc-text">次练习</div>
+            </div>
+            <div class="other-info">
+                <div class="other-bg">
+                    <div class="detail">
+                        <img src="/images/icon_zan_count.png" alt="">
+                        <div class="con">
+                            <div class="txt-count" id="dz">@ViewBag.Dz</div>
+                            <div class="txt-desc">累计获赞(次)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="signin_btn" class="experience-layout" style="display: none;">
+        <div class="experience-btn-bg"></div>
+        <div class="experience-btn-box">
+            <div class="experience-btn" onclick="goToGetCoupon()">
+                <div class="txt">领取体验课代金券</div>
+            </div>
+        </div>
+    </div>
+    <div id="signin_btn2" class="experience-layout" style="display: none;">
+        <div class="experience-btn-bg"></div>
+        <div class="experience-btn-box">
+            <div class="experience-btn">
+                <div class="txt">成功领取体验课代金券</div>
+            </div>
+        </div>
+    </div>
+	<div id="sluck_btn" class="experience-layout" style="display: none;">
+		<div class="experience-btn-bg"></div>
+		<div class="experience-btn-box">
+			<div class="experience-btn" onclick="goToGetLuck()" style="background-image: url(/images/signin_btn2.png);">
+				<div class="txt" style="margin-top: 2.9rem;">去抽奖</div>
+			</div>
+		</div>
+	</div>
+	<div id="sluck_btn2" class="experience-layout" style="display: none;">
+		<div class="experience-btn-bg"></div>
+		<div class="experience-btn-box">
+			<div class="experience-btn" style="background-image: url(/images/signin_btn2.png);">
+				<div class="txt" style="margin-top: 2.9rem;">您已抽奖</div>
+			</div>
+		</div>
+	</div>	
+    <div id="btn_occupied" style="display: none; height: 150px;"></div>
+
+    <div class="org-info">
+        <div class="org-desc">
+            <div class="org-desc-layout">
+                <div class="org-logo">
+                    <img src="/images/icon_logo.jpg">
+                </div>
+				<div class="org-msg">
+					<div class="org-name">昱隆网球学院</div>
+					<div class="org-address">
+						<strong class="address">新庄校区：</strong>
+						<div class="address-desc">玄武区南京林业大学网球场</div>
+					</div>
+					<div class="org-address">
+						<strong class="address">迈皋桥校区：</strong>
+						<div class="address-desc">迈皋桥浅草名苑小区网球场</div>
+					</div>
+					<div class="org-address">
+						<strong class="address">下马坊校区：</strong>
+						<div class="address-desc">南京农业大学卫岗校区网球场</div>
+					</div>
+					<div class="org-phone"><strong>电话：</strong>17183451521吕教练</div>
+					<div class="org-phone"><strong style="color: transparent;">电话：</strong>15861815945章教练</div>
+				</div>
+            </div>
+        </div>
+		<div class="qrcode-img" title="">
+			<img alt="Scan me!" src="/images/cion_qrcode.jpg" style="display: block;">
+		</div>	
+        <div class="prompt-1" style="font-size: 15.6621px"> - 长按识别二维码，参加抗疫迎春游戏 -</div>
+    </div>
+    </div>
+    <script src="/js/jquery.js"></script>
+    <script src="/layui/layui.js"></script>
+</body>
+
+<script type="text/javascript">
+    var innerWidth = window.innerWidth;
+    var innerHeight = window.innerHeight;
+    layui.use('upload', function () {
+        var upload = layui.upload;
+
+    })
+
+    $(".signIn_back").css("width", innerWidth + "px");
+    $(".signIn_back").css("height", innerHeight + "px");
+    var video_width = innerWidth - 40;
+    $(".video_fra").css("width", video_width + "px");
+    $("body").css("display", "block");
+
+    $("#praise_btn").click(function () {
+        if ($(this).hasClass('gray')) {
+            return;
+        }
+         $.ajax({
+                headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'@ViewBag.Uid'}" },
+                url: "/wapi/User/SaveClick?id=@ViewBag.Id",
+                type: "get",
+                success: function (data) {
+                    if (!data.IsSuccess) {
+                        alert(data.Message);
+                        return;
+                    } 
+                }, error: function (res) {
+					layer.msg("操作失败~")
+                }
+            })
+
+        $(this).addClass('gray');
+        var number = $("#zan_box text").text();
+        number = parseInt(number) + 1;
+        $("#zan_box text").text(number)
+        $("#zan_box img").attr("src", "/images/icon_zan_full.png")
+        var numbe1 = $(".txt-count").text();
+        numbe1 = parseInt(numbe1) + 1;
+        $(".txt-count").text(numbe1);
+    })
+
+    function goToGetCoupon() {
+         window.location.href = "https://yulong.qiyepro.com/home/register?id=@ViewBag.Id";
+    }
+    function goToGetLuck() {
+         window.location.href = "https://yulong.qiyepro.com/home/luck?id=@ViewBag.Id";
+    }	
+	
+	
+	var a= @ViewBag.IsOwn;
+	var oper_btn_name = '#signin_btn';
+	if(a == 1){
+		oper_btn_name = '#sluck_btn';
+	}
+	$(oper_btn_name).css("display","block");
+    var X = $(oper_btn_name).offset().top;
+    var Y = $(oper_btn_name).offset().left;
+    var btn_height = $(oper_btn_name).height();
+    console.log(X)
+    console.log(innerHeight)
+    console.log(innerHeight - (X + btn_height))
+
+    if ((innerHeight - (X + btn_height)) <= 0) {
+        if ($(window).scrollTop() <= Math.abs((innerHeight - (X + btn_height)))) {
+            $(oper_btn_name).addClass('fixed');
+            $("#btn_occupied").css("display", "block");
+        }
+    }
+
+
+    $(window).scroll(function (event) {
+        console.log($(window).scrollTop())
+        if ((innerHeight - (X + btn_height)) > 0) {
+            return;
+        }
+        if ($(window).scrollTop() <= Math.abs((innerHeight - (X + btn_height)))) {
+            $(oper_btn_name).addClass('fixed');
+            $("#btn_occupied").css("display", "block");
+        } else {
+            $(oper_btn_name).removeClass('fixed');
+            $("#btn_occupied").css("display", "none");
+        }
+    });
+
+
+</script>
+
+  
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+    <script>
+        wx.config({ 
+            appId: "wxa23e649ec9441aed",
+        timestamp: @ViewBag.Ct,
+        nonceStr: '@ViewBag.Str',
+        signature:  '@ViewBag.Sd',
+        jsApiList: [
+            'checkJsApi',
+            'updateTimelineShareData',
+		            'onMenuShareTimeline',
+		            'onMenuShareAppMessage',
+		            'onMenuShareQQ',
+		            'onMenuShareWeibo',
+		            'hideMenuItems',
+		            'chooseImage'
+		        ]
+    });
+
+        // 调用微信API
+
+        wx.error(function(res){
+        });
+
+        wx.ready(function () {      //需在用户可能点击分享按钮前就先调用
+            wx.updateTimelineShareData({
+                title: '我完成了昱隆网院抗疫迎春任务，网球趣味体能每天不重样，锻炼打卡赢奖品', // 分享标题
+                link: "https://yulong.qiyepro.com/home/signin?state=@ViewBag.Id", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: '@("https://yulong.qiyepro.com/images/logo_03.jpg")', // 分享图标
+                success: function () { 
+                }
+            })
+        });
+</script>
+
+</html>

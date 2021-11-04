@@ -1,0 +1,377 @@
+﻿@{
+    Layout = null;
+}
+@model school.Model.TO.Response.DicItemVO2
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>字典</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    @*  <link href="/ad/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+        <link href="/ad/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+        <link href="/ad/css/plugins/iCheck/custom.css" rel="stylesheet">
+        <link href="/ad/css/animate.css" rel="stylesheet">
+        <link href="/ad/css/style.css?v=4.1.0" rel="stylesheet">*@
+
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/common.css">
+
+    <link href="/ad/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/ad/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/ad/css/animate.css" rel="stylesheet">
+    <link href="/ad/css/plugins/summernote/summernote.css" rel="stylesheet">
+    <link href="/ad/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
+    <link href="/ad/css/style.css?v=4.1.0" rel="stylesheet">
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>内容</h5>
+                        <div class="ibox-tools">
+                            <ul class="dropdown-menu dropdown-user"></ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label>名称</label>
+                                        <input type="text" id="Name" class="form-control" value="@Model.Name" />
+                                    </div>
+                                    <div class="form-group">
+                                        @foreach (var item in Model.OneList)
+                                        {
+                                            <input type="checkbox" value="@item.Id" name="OneCategory" />@item.Name
+                                        }
+                                        <br />
+                                        @foreach (var item in Model.TwoList)
+                                        {
+                                            <input type="checkbox" value="@item.Id" name="TwoCategory" />@item.Name
+                                        }
+                                        <br />
+                                        @foreach (var item in Model.ThrList)
+                                        {
+                                            <input type="checkbox" value="@item.Id" name="ThrCategory" />@item.Name
+                                        }
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>视频</label>
+                                        <select name="select" id="selID">
+                                            @foreach (var item in Model.VideoList)
+                                            {
+                                                <option value="@item.Url">@item.Title</option>
+                                            }
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>排序</label>
+                                        <input type="text" id="Sort" class="form-control" value="@Model.Sort" />
+                                    </div>
+
+                                    @*<div class="form-group">
+
+                                            <div class="send_task_box">
+                                                <div id="upload">
+                                                    <image class="icon" id="imgs" src="/images/icon_camera.png" style="width:50px;height:50px;" bindtap="chooseVideo"></image>
+                                                    <div class="name" bindtap="chooseVideo">
+                                                        视频
+                                                        <div class="desc">相册/拍视频</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                    <div class="form-group">
+                                        <label>要点</label>
+                                        <div class="summernote">
+                                            @Model.Points
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button type="button" id="btn">提交</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+<!-- 全局js -->
+<script src="/ad/js/jquery.min.js?v=2.1.4"></script>
+<script src="/ad/js/bootstrap.min.js?v=3.3.6"></script>
+
+<!-- 自定义js -->
+<script src="/ad/js/content.js?v=1.0.0"></script>
+<script src="/layui/layui.js"></script>
+<!-- SUMMERNOTE -->
+<script src="/ad/js/plugins/summernote/summernote.min.js"></script>
+<script src="/ad/js/plugins/summernote/summernote-zh-CN.js"></script>
+
+<script>
+
+
+</script>
+
+<script language="javascript">
+    function demo2() {
+        var arr = [];
+        var r = document.getElementsByName("r");
+        for (var i = 0; i < r.length; i++) {
+            if (r[i].checked) {
+                arr.push(r[i].value);
+            }
+        }
+        alert('我选择的答案是:' + arr)
+    }
+</script>
+
+<script language="javascript">
+    var name1 = "@Model.OneCategory";
+    var name2 = "@Model.TwoCategory";
+    var name3 = "@Model.ThrCategory";
+    var names = name1.split(",");
+    var inputs = document.getElementsByName("OneCategory");
+
+    for (var i = 0; i < inputs.length; i++) {
+        for (var n = 0; n < names.length; n++) {
+            if (names[n] === inputs[i].value) {
+                inputs[i].checked = true;
+            }
+        }
+    };
+
+    var names = name2.split(",");
+    var inputs = document.getElementsByName("TwoCategory");
+
+    for (var i = 0; i < inputs.length; i++) {
+        for (var n = 0; n < names.length; n++) {
+            if (names[n] === inputs[i].value) {
+                inputs[i].checked = true;
+            }
+        }
+    };
+    var names = name3.split(",");
+    var inputs = document.getElementsByName("ThrCategory");
+
+    for (var i = 0; i < inputs.length; i++) {
+        for (var n = 0; n < names.length; n++) {
+            if (names[n] === inputs[i].value) {
+                inputs[i].checked = true;
+            }
+        }
+    };
+    var video = "@Model.VideoUrl"; 
+    $("#selID").val(video);
+
+</script>
+
+
+
+<script>
+    var cl=@Model.Sort;
+    $(document).ready(function () {
+        //query(1);
+    });
+</script>
+
+<script>
+    function query(id) {
+        $.ajax({
+            headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'00c11211-0e0c-464b-8e37-33ac40747fb1'}" },
+            url: "/wapi/wxsmall/GetCategoryList?parentId=" + id,
+            async: true,
+            type: "GET",
+            // 成功后开启模态框
+            success: function (res) {
+                if (res.IsSuccess) {
+                    var chkhtml = [];
+                    var list = res.Body.List;
+                    for (var i = 0; i < list.length; i++) {
+                        //alert(list[i].Name);
+                        chkhtml.push('<input type="checkbox" name="cb" value="'+list[i].Id+'">"'+list[i].Name+'"</input> <br />');
+                    }
+                    //var checkBoxValue = data.split(',');
+                    $("#test").html(chkhtml.join(''));
+                    alert("Asd");
+                    @*alert("操作成功");
+                    window.location.href = "/admin/dicItemList/@ViewBag.ParId";*@
+                }
+                else {
+                    alert(res.Message);
+                }
+            },
+            error: function () {
+                alert("请求失败");
+            },
+            dataType: "json"
+        });
+    }
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+    function uploadSummerPic(file, editor, $editable) {
+        var fd = new FormData();
+        fd.append("file", file);
+        $.ajax({
+            type: "POST",
+            url: "/wapi/User/UploadP",
+            data: fd,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                editor.insertImage($editable, data.Body.Model.Str);
+            }
+        });
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        $('.summernote').summernote({
+            lang: 'zh-CN',
+            onImageUpload: function (files, editor, $editable) {
+                uploadSummerPic(files[0], editor, $editable);
+            }
+        });
+
+    });
+
+    var edit = function () {
+        $("#eg").addClass("no-padding");
+        $('.click2edit').summernote({
+            lang: 'zh-CN',
+            focus: true
+        });
+    };
+    var save = function () {
+        $("#eg").removeClass("no-padding");
+        var aHTML = $('.click2edit').code(); //save HTML If you need(aHTML: array).
+        $('.click2edit').destroy();
+    };
+</script>
+<script>
+    var src = "@Model.VideoUrl";
+    layui.use('upload', function () {
+        var upload = layui.upload;
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#upload' //绑定元素
+            , url: '/wapi/user/Upload/' //上传接口
+            , accept: "file"
+            , auto: true //是否开启自动上传
+            , choose: function (obj) {
+                var files = obj.pushFile();
+                //预读本地文件，如果是多文件，则会遍历。(不支持ie8/9)
+                obj.preview(function (index, file, result) {
+                    console.log(index); //得到文件索引
+                    console.log(file); //得到文件对象
+                    console.log(result); //得到文件base64编码，比如图片
+                    var flag = 0;
+                    var arr = (file.type).split("/");
+                    if (true) { flag = 1 }
+                    delete files[index];
+                    if (flag == 1) {
+                        layer.msg("上传成功");
+
+                        //  $("#camrea_tip").css("display", "block");
+                    } else {
+                        layer.msg("只支持上传视频格式~")
+                    }
+
+                });
+            }
+            //, bindAction: "#btn"
+            , done: function (res) {
+                $("#imgs").attr("src", res.Body.Model.Str);
+                src = res.Body.Model.Str;
+            }
+            , error: function (res) {
+                alert("上传失败！");
+            }
+        });
+    });
+
+
+    $(function () {
+        var id ="@ViewBag.Id";
+        $("#btn").click(function () {
+            var arr = "";
+            var r = document.getElementsByName("OneCategory");
+            for (var i = 0; i < r.length; i++) {
+                if (r[i].checked) {
+                    //arr.push(r[i].value);
+                    arr += r[i].value+",";
+                }
+            }
+
+            var arr2 = [];
+            var r = document.getElementsByName("TwoCategory");
+            for (var i = 0; i < r.length; i++) {
+                if (r[i].checked) {
+                    arr2 += r[i].value + ",";
+                }
+            }
+            var arr3 = [];
+            var r = document.getElementsByName("ThrCategory");
+            for (var i = 0; i < r.length; i++) {
+                if (r[i].checked) {
+                    arr3 += r[i].value + ",";
+                }
+            }
+                var sHTML = $('.summernote').code();
+                $.ajax({
+                    headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'00c11211-0e0c-464b-8e37-33ac40747fb1'}" },
+                    url: "/wapi/wxSmall/SaveDic",
+                    async: true,
+                    type: "POST",
+                    data: JSON.stringify({
+                        "Points": sHTML,
+                        "id": id,
+                        "PaterId":"@ViewBag.ParId",
+                        "Name": $("#Name").val(),
+                        "VideoUrl": $("#selID").val(),
+                        "Sort": $("#Sort").val(),
+
+                        "OneCategory": arr,
+                        "TwoCategory": arr2,
+                        "ThrCategory": arr3,
+                    }),
+                    // 成功后开启模态框
+                         success: function(){
+                        alert("操作成功");
+                            window.location.href = "/admin/dicItemList/@ViewBag.ParId";
+                    },
+                    error: function () {
+                        alert("请求失败");
+                    },
+                    dataType: "json"
+                });
+            });
+        });
+</script>
+</html>

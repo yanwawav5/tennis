@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xml>
+  <appid><![CDATA[wx289ebd59dd618b32]]></appid>\n<bank_type><![CDATA[OTHERS]]></bank_type>\n<cash_fee><![CDATA[1]]></cash_fee>\n<fee_type><![CDATA[CNY]]></fee_type>\n<is_subscribe><![CDATA[N]]></is_subscribe>\n<mch_id><![CDATA[1577085301]]></mch_id>\n<nonce_str><![CDATA[2b9874441b424f7ab425606af7900f87]]></nonce_str>\n<openid><![CDATA[oWWoO5GCs_OJI7ux3Fst8dYWIJzU]]></openid>\n<out_trade_no><![CDATA[720041]]></out_trade_no>\n<result_code><![CDATA[SUCCESS]]></result_code>\n<return_code><![CDATA[SUCCESS]]></return_code>\n<sign><![CDATA[DFCF41FD9D17A34219EF7EAFA91861F0]]></sign>\n<time_end><![CDATA[20200314000039]]></time_end>\n<total_fee>1</total_fee>\n<trade_type><![CDATA[JSAPI]]></trade_type>\n<transaction_id><![CDATA[4200000505202003145967924885]]></transaction_id>\n
+</xml>

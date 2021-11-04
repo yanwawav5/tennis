@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<values>
+  <string name="v-1">您的操作失败</string>
+  <string name="v1">登录失败</string>
+  <string name="v2">请输入用户名</string>
+  <string name="v3">请输入密码</string>
+  <string name="v4">用户名或密码错误</string>
+  <string name="v5">操作失败</string>
+  <string name="v6">日期格式错误</string>
+  <string name="v_NoStudy"></string>
+  <string name="v_RequireName">参数缺失</string> 
+  <string name="v_CJ1">好友点赞才能抽奖哦</string>
+  <string name="v_Nbdc">本场地已经被选择请重新选择</string>
+
+  <string name="v_Nbrq">日期不能为空</string>
+</values>

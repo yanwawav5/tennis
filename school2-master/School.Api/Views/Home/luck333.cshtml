@@ -1,0 +1,269 @@
+﻿@{ Layout = null;}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>打卡</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/draw.css">
+    <style type="text/css">
+        html {
+            font-size: 100px;
+        }
+    </style>
+</head>
+
+&lt;div&gt;【课程特色】&lt;/div&gt;&lt;div&gt;双倍服务：线下培训＋线上同步教案和视频&lt;/div&gt;&lt;div&gt;依据身体、心理、认知和情感的科学训练计划&lt;/div&gt;&lt;div&gt;体育教育：塑造孩子的22个认知和情感技巧&lt;/div&gt;&lt;div&gt;&amp;nbsp;“Play at home“任务跟踪&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;【产品信息】&lt;/div&gt;&lt;div&gt;适合人群&lt;/div&gt;&lt;div&gt;10～13岁女生；11～16岁男生&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;课程目标&lt;/div&gt;&lt;div&gt;帮助孩子在运动要素：耐力、速度的敏感期窗口科学训练，提高运动能力，科学定制此年龄段的网球技战术培养&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;课程构成&lt;/div&gt;&lt;div&gt;综合体适能、网球技战术、比赛情景演练、合作竞争与体育人格塑造&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;上课人数&lt;/div&gt;&lt;div&gt;一对一&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;上课时间&lt;/div&gt;&lt;div&gt;孩子放学后或周末&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;【详细说明】&lt;/div&gt;&lt;div&gt;在这一年龄段运动要素（耐力、线性多方向速度、动态平衡、复杂协调性）的敏感期窗口制定科学的训练计划提高孩子的身体机能和运动能力；提高孩子的网球技能如击球的听觉、旋转的判断、步伐、拍头速度等；帮助孩子建立适合自己的比赛风格、打造获胜的武器，精细化打磨底线对底线、发球+第3拍、接发球+第4拍、随球上网、对手在网前5个比赛情景，
+建立百分比网球的意识&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;
+
+
+<body class="draw_body">
+    <div class="draw_machine_fra">
+        <img class="draw_machine" src="/images/icon_draw_machine.png">
+        <div class="draw_prize_list float_after">
+            <div class="draw_prize_item float_left">
+                <div class="con_list" style="transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                </div>
+            </div>
+            <div class="draw_prize_item float_left">
+                <div class="con_list" style="transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                </div>
+            </div>
+            <div class="draw_prize_item float_left">
+                <div class="con_list" style="transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                </div>
+            </div>
+        </div>
+        <div class="gan">
+            <img class="draw_machine_gan" src="/images/icon_draw_gan.png">
+        </div>
+        <div class="point">
+            <img class="draw_machine_gan" src="/images/poiner.png">
+        </div>
+
+    </div>
+    <div class="draw_belong">版权所有：昱隆网球学院</div>
+    <div class="draw_get_box" id="draw_get_box" style="display: none;">
+        <div class="mask"></div>
+        <div class="get_fra">
+            <img class="get_back" src="/images/icon_draw_get.png" />
+            <div class="prize_img"><img src="" /></div>
+            <div class="prize_name back_overflow">恭喜您，抽中<span></span></div>
+            <div class="btn" id="get_btn">
+                <img class="btn_back" src="/images/icon_draw_get_btn.png"><div class="name">确定</div>
+            </div>
+        </div>
+
+    </div>
+    <div class="draw_get_box" id="draw_none_box" style="display: none;">
+        <div class="mask"></div>
+        <div class="get_fra">
+            <img class="get_back" src="/images/icon_draw_get.png" />
+            <div class="prize_img no_prize_img"><imgsrc ="/images/icon_draw_close.png" /></div>
+            <div class="prize_name back_overflow">很遗憾，未中奖</div>
+            <div class="btn" id="none_btn">
+                <img class="btn_back" src="/images/icon_draw_get_btn.png"><div class="name">确定</div>
+            </div>
+        </div>
+
+    </div>
+    <div class="tip_box" id="tip_box" style="display: none;">
+        <div class="con">
+            <div class="title">温馨提示</div>
+            <div class="main">您的奖品到店才能领取哦~</div>
+            <div class="btn" id="tip_btn">确定</div>
+        </div>
+
+    </div>
+</body>
+<scriptsrc ="/js/jquery.js">
+    </script>
+    <scriptsrc ="/layui/layui.js">
+        </script>
+
+        <script src="~/JS/drawM.js"></script>
+
+        <script type="text/javascript">
+            @* var pr = 0; var prn = 0;
+        function get_list(opts) {
+            console.log(opts)
+            for (var i = 0; i < opts.count; i++) {
+                for (var j = 0; j < opts.img_arr.length; j++) {
+                    var html = '<div class="con"><div class="image_fra"><imgsrc="' + opts.img_arr[j]['img'] + '"></div><div class="name back_overflow">' + opts.img_arr[j]['name'] + '</div></div>';
+                    $(opts.name).find(".draw_prize_item").eq(0).find(".con_list").append(html)
+                    $(opts.name).find(".draw_prize_item").eq(1).find(".con_list").append(html)
+                    $(opts.name).find(".draw_prize_item").eq(2).find(".con_list").append(html)
+                }
+            }
+            var height = $(opts.name).find(".draw_prize_item").height();
+            $(opts.name).find(".draw_prize_item").eq(1).find(".con_list").css("transform", "translate(0px, " + (-height) + "px)");
+            $(opts.name).find(".draw_prize_item").eq(2).find(".con_list").css("transform", "translate(0px, " + (-height * 2) + "px)");
+        }
+            $.fn.DrawM = function (options) {
+                var opts = {
+                    count: 0,
+                    img_arr: [],
+                    get_prize: 0,
+                    get_prize_index: 0,
+                    name: "",
+                    btn: ""
+                };
+                $.extend(opts, options);
+                get_list(opts)
+                var drawing = 0;
+                var list_height = $(opts.name).find(".draw_prize_item .con_list").height();
+                var item_height = $(opts.name).find(".draw_prize_item").height();
+                list_height = list_height - item_height;
+                $(options.btn).click(function () {
+                    $.ajax({
+                        headers: { 'Content-Type': 'application/json;charset=utf8', 'MyHeader': "{'UserKey':'@ViewBag.Uid'}" },
+                        url: "/wapi/User/SaveCj?id=@ViewBag.Id",
+                        type: "get",
+                        success: function (data) {
+                            if (!data.IsSuccess) {
+                                alert(data.Message);
+                                return;
+                            }
+                            else {
+                                pr = data.model.Prize;
+                                prn = data.model.PrizeNum;
+                            }
+
+                        }, error: function (res) {
+                            alert("操作失败！");
+                        }
+                    })
+                    if (drawing == 1) {
+                        return;
+                    }
+                    drawing = 1;
+                    $(".point").css("opacity", "0").css("transition-duration", "0.5s");;
+
+                    //是否中奖
+                    var ori_arr = JSON.parse(JSON.stringify(opts.img_arr));
+                    for (var i = 0; i < ori_arr.length; i++) {
+                        ori_arr[i]['index'] = i;
+                    }
+
+                    if (opts.get_prize == 0) {
+                        var x = ori_arr.length - 1;
+                        var y = 0;
+                        var rand = parseInt(Math.random() * (x - y + 1) + y);
+                        var first_con = ori_arr[rand];
+                        var second_con = ori_arr[rand];
+                        var third_con = ori_arr[rand];
+                    } else {
+                        var first_con = ori_arr[opts.get_prize_index];
+                        var second_con = ori_arr[opts.get_prize_index];
+                        var third_con = ori_arr[opts.get_prize_index];
+                    }
+
+                    if (opts.get_prize == 0) {
+                        ori_arr.splice(first_con['index'], 1)
+                        var x = ori_arr.length - 1;
+                        var y = 0;
+                        var rand1 = parseInt(Math.random() * (x - y + 1) + y);
+                        var rand2 = parseInt(Math.random() * (x - y + 1) + y);
+                        second_con = ori_arr[rand1];
+                        third_con = ori_arr[rand2];
+                    }
+
+                    //点击事件
+                    var that = this;
+                    var height = $(this).height();
+                    var ori_height = height;
+                    height = height * 0.7;
+
+                    $(that).css("height", height + "px");
+                    setTimeout(function () {
+                        $(that).css("height", ori_height + "px");
+                    }, 500)
+                    var img_length = opts.img_arr.length;
+                    console.log(first_con)
+                    console.log(second_con)
+                    console.log(third_con)
+                    $(opts.name).find(".draw_prize_item").eq(0).find(".con_list").css("transform", "translate(0px, " + (-list_height + ((img_length - 1 - first_con['index']) * item_height)) + "px)").css("transition-duration", "5s");
+                    setTimeout(function () {
+                        $(opts.name).find(".draw_prize_item").eq(1).find(".con_list").css("transform", "translate(0px, " + (-list_height + ((img_length - 1 - second_con['index']) * item_height)) + "px)").css("transition-duration", "5s");
+                    }, 500)
+                    setTimeout(function () {
+                        $(opts.name).find(".draw_prize_item").eq(2).find(".con_list").css("transform", "translate(0px, " + (-list_height + ((img_length - 1 - third_con['index']) * item_height)) + "px)").css("transition-duration", "5s");
+                    }, 1000)
+                    setTimeout(function () {
+                        if (opts.get_prize == 0) {
+                            $("#draw_none_box").css("display", "block");
+                        } else {
+                            $("#draw_get_box .prize_img img").attr("src", first_con['img']);
+                            $("#draw_get_box .prize_name span").text(first_con['name']);
+                            $("#draw_get_box").css("display", "block");
+                        }
+                    }, 6500)
+
+                })
+
+            };*@
+
+    $(document).ready(function () {
+        //获取视窗宽度（兼容性写法）
+        let rootWidth = document.documentElement.clientWidth || document.body.clientWidth;
+
+        //获取html元素
+        let rootDom = document.querySelector('html');
+
+        //动态设置html的font-size（除以10是让浏览器的font-size达到比较合适目的）
+        rootDom.style.fontSize = rootWidth / 100 + 'px';
+        setTimeout(function () {
+            $(".gan").addClass('transition_01')
+        })
+
+        $("#get_btn").click(function () {
+            $("#draw_get_box").css("display", "none");
+            $("#tip_box").css("display", "block");
+        })
+        $("#tip_btn").click(function () {
+            $("#tip_box").css("display", "none");
+        })
+        $("#none_btn").click(function () {
+            $("#draw_none_box").css("display", "none");
+        })
+
+        $(".draw_prize_list").DrawM({
+            name: ".draw_prize_list",
+            count: 12, //动画的快慢 数字越大,动的越快
+            btn: ".gan",
+            get_prize: 0,
+            get_prize_index: 0,
+            img_arr: [
+                {
+                    "img": "images/lp-01.png",
+                    "name": "欢乐小玩具"
+                },
+                {
+                    "img": "images/lp-02.png",
+                    "name": "精美文具"
+                },
+                {
+                    "img": "images/lp-03.png",
+                    "name": "柄皮换新服务"
+                },
+                {
+                    "img": "images/lp-04.png",
+                    "name": "网球"
+                },
+                {
+                    "img": "images/lp-05.png",
+                    "name": "穿线服务"
+                },
+                {
+                    "img": "images/lp-06.png",
+                    "name": "10元代金券"
+                },
+            ],
+        })
+
+    });
+
+        </script>
+</html>

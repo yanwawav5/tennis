@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2CD3E63D-1175-4F3C-A0BF-0FD29206981B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>school.Model</RootNamespace>
+    <AssemblyName>school.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\School.Lib\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\School.Lib\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BO\AmountBo.cs" />
+    <Compile Include="BO\BaseBo.cs" />
+    <Compile Include="BO\BaseCore.cs" />
+    <Compile Include="BO\DeleteByIdModelBo.cs" />
+    <Compile Include="BO\MathBO.cs" />
+    <Compile Include="BO\School\ActivityBO.cs" />
+    <Compile Include="BO\School\ActivityStudentBO.cs" />
+    <Compile Include="BO\School\CategoryBO.cs" />
+    <Compile Include="BO\School\DicBO.cs" />
+    <Compile Include="BO\School\DicCategoryBO.cs" />
+    <Compile Include="BO\School\DICCategoryRequest.cs" />
+    <Compile Include="BO\School\EquBO.cs" />
+    <Compile Include="BO\School\EquListBO.cs" />
+    <Compile Include="BO\School\FilePriceBO.cs" />
+    <Compile Include="BO\School\SchoolBO.cs" />
+    <Compile Include="BO\School\SendMessageSMBO.cs" />
+    <Compile Include="BO\School\StudentCourseClassBO.cs" />
+    <Compile Include="BO\School\TeachingPlanInfoBO.cs" />
+    <Compile Include="BO\School\VideoBO.cs" />
+    <Compile Include="BO\School\TeachingPlanBO.cs" />
+    <Compile Include="BO\School\OrderBO.cs" />
+    <Compile Include="BO\School\StudentLeaveBO.cs" />
+    <Compile Include="BO\School\CourseBO.cs" />
+    <Compile Include="BO\School\CourseListBO.cs" />
+    <Compile Include="BO\School\FieldBO.cs" />
+    <Compile Include="BO\School\IdListBO.cs" />
+    <Compile Include="BO\School\ShareInfoBO.cs" />
+    <Compile Include="BO\School\StudentBO.cs" />
+    <Compile Include="BO\School\StudentCourseBO.cs" />
+    <Compile Include="BO\School\SubscribeBO.cs" />
+    <Compile Include="BO\School\TeacherBO.cs" />
+    <Compile Include="BO\School\TeacherCourseBO.cs" />
+    <Compile Include="BO\School\TeacherMessageBO.cs" />
+    <Compile Include="BO\WChangeStatusBO.cs" />
+    <Compile Include="BO\WIdListBO.cs" />
+    <Compile Include="BO\WLoginKeyBO.cs" />
+    <Compile Include="BO\WServerCodeBo.cs" />
+    <Compile Include="BO\WServerEmpBO.cs" />
+    <Compile Include="BO\WServerItemBO.cs" />
+    <Compile Include="BO\WServerMainAddBO.cs" />
+    <Compile Include="BO\WServerMainEvaluationBO.cs" />
+    <Compile Include="BO\WServerMainListBO.cs" />
+    <Compile Include="BO\WUserAddressBO.cs" />
+    <Compile Include="BO\WBaseBO.cs" />
+    <Compile Include="BO\WListRequest.cs" />
+    <Compile Include="BO\WProdcutListBO.cs" />
+    <Compile Include="BO\WProductBO.cs" />
+    <Compile Include="BO\WUserInfoBO.cs" />
+    <Compile Include="BO\WxDefaultAddressBO.cs" />
+    <Compile Include="BO\WxUser\WxUserBO.cs" />
+    <Compile Include="DAO\Base\BaseModel.cs" />
+    <Compile Include="DAO\Base\W_PayKey.cs" />
+    <Compile Include="DAO\School\M_TransferCourse.cs" />
+    <Compile Include="DAO\School\M_ActivityStudent.cs" />
+    <Compile Include="DAO\School\M_Activity.cs" />
+    <Compile Include="DAO\School\M_Category.cs" />
+    <Compile Include="DAO\School\M_Equ.cs" />
+    <Compile Include="DAO\School\M_Evaluate.cs" />
+    <Compile Include="DAO\School\M_FilePrice.cs" />
+    <Compile Include="DAO\School\M_Menu.cs" />
+    <Compile Include="DAO\School\M_TeacherCourseEvaluate.cs" />
+    <Compile Include="DAO\School\M_StudentCourseClass.cs" />
+    <Compile Include="DAO\School\M_TeachingPlanInfo.cs" />
+    <Compile Include="DAO\School\M_Video.cs" />
+    <Compile Include="DAO\School\M_TeachingPlan.cs" />
+    <Compile Include="DAO\School\M_School.cs" />
+    <Compile Include="DAO\School\M_Subscribe.cs" />
+    <Compile Include="DAO\School\M_Order.cs" />
+    <Compile Include="DAO\School\M_TeacherCourse.cs" />
+    <Compile Include="DAO\School\M_StudentLeave.cs" />
+    <Compile Include="DAO\School\M_StudentCourse.cs" />
+    <Compile Include="DAO\School\M_Dic.cs" />
+    <Compile Include="DAO\School\M_Field.cs" />
+    <Compile Include="DAO\School\M_PrizeType.cs" />
+    <Compile Include="DAO\School\M_Course.cs" />
+    <Compile Include="DAO\School\M_FieldInfo.cs" />
+    <Compile Include="DAO\School\M_ShareInfo.cs" />
+    <Compile Include="DAO\School\M_StudentAddress.cs" />
+    <Compile Include="DAO\School\M_StudentPrize.cs" />
+    <Compile Include="DAO\School\M_ShareInfoClick.cs" />
+    <Compile Include="DAO\School\M_Student.cs" />
+    <Compile Include="DAO\School\M_Teacher.cs" />
+    <Compile Include="DAO\School\M_TeacherMessage.cs" />
+    <Compile Include="DAO\School\W_StudentKj.cs" />
+    <Compile Include="DAO\School\W_Code.cs" />
+    <Compile Include="DAO\School\W_Js.cs" />
+    <Compile Include="DAO\W_ProductItemPrice.cs" />
+    <Compile Include="DAO\W_LoginKey.cs" />
+    <Compile Include="DAO\W_Product.cs" />
+    <Compile Include="DAO\W_ProductItem.cs" />
+    <Compile Include="DAO\W_ServerItem.cs" />
+    <Compile Include="DAO\W_ServerMain.cs" />
+    <Compile Include="DAO\W_ServerMainEvaluation.cs" />
+    <Compile Include="DAO\School\W_Token.cs" />
+    <Compile Include="DAO\W_TopPic.cs" />
+    <Compile Include="DAO\W_UserAddress.cs" />
+    <Compile Include="DAO\W_UserInfo.cs" />
+    <Compile Include="Enum\OldNewType.cs" />
+    <Compile Include="Enum\StatusEnum.cs" />
+    <Compile Include="BO\KeyValueBo.cs" />
+    <Compile Include="BO\PageInfo.cs" />
+    <Compile Include="BO\SqlItem.cs" />
+    <Compile Include="BO\UserBlindBo.cs" />
+    <Compile Include="BO\User\UserBO.cs" />
+    <Compile Include="DAO\Base\BaseEntity.cs" />
+    <Compile Include="DAO\IDependency.cs" />
+    <Compile Include="Enum\ApiCode.cs" />
+    <Compile Include="Enum\ChangeType.cs" />
+    <Compile Include="Enum\FileType.cs" />
+    <Compile Include="Enum\SubCode.cs" />
+    <Compile Include="TO\Request\PayRequest.cs" />
+    <Compile Include="TO\Request\School\ActityRequest.cs" />
+    <Compile Include="TO\Request\School\ActiveListRequest.cs" />
+    <Compile Include="TO\Request\School\ActivityStudentRequest.cs" />
+    <Compile Include="TO\Request\School\CategoryRequest.cs" />
+    <Compile Include="TO\Request\School\CourseRequest.cs" />
+    <Compile Include="TO\Request\School\CourseListRequest.cs" />
+    <Compile Include="TO\Request\School\DicRequest.cs" />
+    <Compile Include="TO\Request\School\EquListRequest.cs" />
+    <Compile Include="TO\Request\School\EquRequest.cs" />
+    <Compile Include="TO\Request\School\FilePriceRequest.cs" />
+    <Compile Include="TO\Request\School\SchoolRequest.cs" />
+    <Compile Include="TO\Request\School\SendMessageRequest.cs" />
+    <Compile Include="TO\Request\School\IdListRequest.cs" />
+    <Compile Include="TO\Request\School\JobStudentRequest.cs" />
+    <Compile Include="TO\Request\School\SaveStudentCourseClassRequest.cs" />
+    <Compile Include="TO\Request\School\StudentCourseClassQueryBORequest.cs" />
+    <Compile Include="TO\Request\School\StudentUpRequest.cs" />
+    <Compile Include="TO\Request\School\TeacherCourseRequest.cs" />
+    <Compile Include="TO\Request\School\TeacherSchoolCategoryRequset.cs" />
+    <Compile Include="TO\Request\School\VideoRequest.cs" />
+    <Compile Include="TO\Request\School\TeachingPlanInfoRequest.cs" />
+    <Compile Include="TO\Request\School\TeachingPlanRequest.cs" />
+    <Compile Include="TO\Request\School\OrderRequest.cs" />
+    <Compile Include="TO\Request\School\ShareInfoRequest.cs" />
+    <Compile Include="TO\Request\School\StudentCourseRequest.cs" />
+    <Compile Include="TO\Request\School\StudentLeaveRequest.cs" />
+    <Compile Include="TO\Request\School\SubESCRequest.cs" />
+    <Compile Include="TO\Request\School\SubRequest.cs" />
+    <Compile Include="TO\Request\School\TeacherMessageRequest.cs" />
+    <Compile Include="TO\Request\School\TeacherRequest.cs" />
+    <Compile Include="TO\Request\School\TeacherSubRequest.cs" />
+    <Compile Include="TO\Request\UpPicRequest.cs" />
+    <Compile Include="TO\Request\WserverCodeRequest.cs" />
+    <Compile Include="TO\Request\WStrRequest.cs" />
+    <Compile Include="TO\Request\WxSmall\WProductListRequest.cs" />
+    <Compile Include="TO\Request\WxSmall\WxLoginRequest.cs" />
+    <Compile Include="TO\Response\School\ActvityResponse.cs" />
+    <Compile Include="TO\Response\School\CategoryResponse.cs" />
+    <Compile Include="TO\Response\School\ClassInfoNumResponse.cs" />
+    <Compile Include="TO\Response\School\StudentCourseClassRsponese.cs" />
+    <Compile Include="TO\Response\School\EquResponse.cs" />
+    <Compile Include="TO\Response\School\KeyValueResponse.cs" />
+    <Compile Include="TO\Response\School\StudentKjVORsponese.cs" />
+    <Compile Include="TO\Response\School\DicListRsponese.cs" />
+    <Compile Include="TO\Response\School\CourseListRsponese.cs" />
+    <Compile Include="TO\Response\School\CourseRsponese.cs" />
+    <Compile Include="TO\Response\School\IdListResponse.cs" />
+    <Compile Include="TO\Response\School\SubListReVOResponse.cs" />
+    <Compile Include="TO\Response\School\TeacherCourseShowResponse.cs" />
+    <Compile Include="TO\Response\School\TeacherSelListResponse.cs" />
+    <Compile Include="TO\Response\School\TeacherStudentCourseClassResponse.cs" />
+    <Compile Include="TO\Response\School\TeackerActivityStudentVOResponse.cs" />
+    <Compile Include="TO\Response\School\VideoResponse.cs" />
+    <Compile Include="TO\Response\School\TeachingPlanResponse.cs" />
+    <Compile Include="TO\Response\School\PrizeResponse.cs" />
+    <Compile Include="TO\Response\School\SchoolFieldResponse.cs" />
+    <Compile Include="TO\Response\School\StudentCourseResponse.cs" />
+    <Compile Include="TO\Response\School\StudentOrderListResponse.cs" />
+    <Compile Include="TO\Response\School\StudentResponse.cs" />
+    <Compile Include="TO\Response\School\SubListResponse.cs" />
+    <Compile Include="TO\Response\School\SubScribeListResponse.cs" />
+    <Compile Include="TO\Response\School\TeacherMessageListResponse.cs" />
+    <Compile Include="TO\Response\School\TeacherMessageResponse.cs" />
+    <Compile Include="TO\Response\School\TeacherResponse.cs" />
+    <Compile Include="TO\Response\School\UserTelResponse.cs" />
+    <Compile Include="TO\Response\TopPicListResponse.cs" />
+    <Compile Include="TO\Response\WbPayResponse.cs" />
+    <Compile Include="TO\Response\WechatUserInfoResponse.cs" />
+    <Compile Include="TO\Response\WServerMainEvalResponse.cs" />
+    <Compile Include="TO\Response\WStrResponse.cs" />
+    <Compile Include="TO\Response\School\WxSmallResponse.cs" />
+    <Compile Include="ModelHelper\PowerDescription.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TO\ApiHeader.cs" />
+    <Compile Include="TO\ApiResult.cs" />
+    <Compile Include="TO\Request\PageRequest.cs" />
+    <Compile Include="TO\Response\AbsResponse.cs" />
+    <Compile Include="TO\Response\CommonResponse.cs" />
+    <Compile Include="TO\Request\AbsRequest.cs" />
+    <Compile Include="TO\Response\NoneResponse.cs" />
+    <Compile Include="VO\BaseLog.cs" />
+    <Compile Include="VO\BlindItemsImportedInfoVo.cs" />
+    <Compile Include="VO\PayRequesEntity.cs" />
+    <Compile Include="VO\PriceVO.cs" />
+    <Compile Include="VO\LogItem.cs" />
+    <Compile Include="VO\ProductItemPriceVO.cs" />
+    <Compile Include="VO\ProductItemVO.cs" />
+    <Compile Include="VO\ProductItemInfoVO.cs" />
+    <Compile Include="VO\School\ActivityStudentVO.cs" />
+    <Compile Include="VO\School\ActivityVO.cs" />
+    <Compile Include="VO\School\CategoryListVO.cs" />
+    <Compile Include="VO\School\ClassNumInfoVO.cs" />
+    <Compile Include="VO\School\DkListVO.cs" />
+    <Compile Include="VO\School\EquVO.cs" />
+    <Compile Include="VO\School\OauthAccessTokenVO.cs" />
+    <Compile Include="VO\School\FieldVO.cs" />
+    <Compile Include="VO\School\StudentCourseClassVO.cs" />
+    <Compile Include="VO\School\OrderVO.cs" />
+    <Compile Include="VO\School\DicVO.cs" />
+    <Compile Include="VO\School\SubListReVO.cs" />
+    <Compile Include="VO\School\TeacherCourseFieldVO.cs" />
+    <Compile Include="VO\School\TeacherStudentVO.cs" />
+    <Compile Include="VO\School\TeacherVO.cs" />
+    <Compile Include="VO\School\TeachingPlanInfoVO.cs" />
+    <Compile Include="VO\School\TeachingPlanVO.cs" />
+    <Compile Include="VO\School\SchoolVO.cs" />
+    <Compile Include="VO\School\VideoVO.cs" />
+    <Compile Include="VO\School\SubListVO.cs" />
+    <Compile Include="VO\School\TeacherCourseVO.cs" />
+    <Compile Include="VO\School\PrizeVO.cs" />
+    <Compile Include="VO\School\RefreshTokenVO.cs" />
+    <Compile Include="VO\School\StudentLeaveVO.cs" />
+    <Compile Include="VO\School\TeacherMessageVO.cs" />
+    <Compile Include="VO\School\UserTelVO.cs" />
+    <Compile Include="VO\School\WechatUserInfoVO.cs" />
+    <Compile Include="VO\ServerEvalVO.cs" />
+    <Compile Include="VO\TopPicVO.cs" />
+    <Compile Include="VO\VauleVO.cs" />
+    <Compile Include="VO\WLoginKeyVO.cs" />
+    <Compile Include="VO\WPriceVO.cs" />
+    <Compile Include="VO\WProductVO.cs" />
+    <Compile Include="VO\WServerItemVO.cs" />
+    <Compile Include="VO\WServerMainEvaluationVO.cs" />
+    <Compile Include="VO\WServerMainVO.cs" />
+    <Compile Include="VO\WTokenVO.cs" />
+    <Compile Include="VO\WUserAddressVO.cs" />
+    <Compile Include="VO\WUserInfoVO.cs" />
+    <Compile Include="WxSmall\WxBaseVO.cs" />
+    <Compile Include="WxSmall\WxSmallInfoVO.cs" />
+    <Compile Include="WxSmall\WxSmallTokenVO.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

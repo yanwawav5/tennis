@@ -1,0 +1,34 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+</head>
+<body>
+    <div>
+        <input type="button"  id="btn" value="点击"/>
+    </div>
+</body>
+<script src="~/JS/jquery-2.1.1.min.js"></script>
+@*<script src="~/JS/jquery-1.11.3.js"></script>*@
+<script>
+    $(document).ready(function () {
+        $("#btn").click(function () {
+            $.post("/Manage/login",
+                {
+                    name: "D啊实打实的onald Duck", 
+                },
+                function (data) {
+                    alert("Data: " + data );
+                });
+        });
+    });
+
+</script>
+</html>

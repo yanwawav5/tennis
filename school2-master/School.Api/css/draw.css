@@ -1,0 +1,308 @@
+/* html{font-size:100px !important;} */
+.transition_01 {
+	-moz-transition: all 0.5s ease;
+	/* Firefox 4 */
+	-webkit-transition: all 0.5s ease;
+	/* Safari 和 Chrome */
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+.draw_body {
+	background-color: #fb3657;
+	background-image: url(../images/icon_draw_back.png);
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+}
+
+.draw_belong {
+	position: fixed;
+	width: 100%;
+	text-align: center;
+	bottom: 9.33333333rem;
+	color: #af2239;
+	font-size: 3.46666667rem;
+}
+
+.draw_machine_fra {
+	position: relative;
+	width: 97.6rem;
+	height: 129.333333rem;
+	margin: 0 auto;
+	margin-top: 8rem;
+}
+
+.draw_machine {
+	display: block;
+	width: 100%;
+	z-index: 5;
+
+}
+
+.gan {
+	position: absolute;
+	display: block;
+	width: 7.2rem;
+	height: 28.2666667rem;
+	right: 2.93333333rem;
+	bottom: 37.0666667rem;
+	overflow: hidden;
+}
+
+.draw_machine_gan {
+	display: block;
+	width: 100%;
+}
+
+@keyframes pointMove {
+	0% {
+		transform: translateY(0);
+	}
+
+	70% {
+		transform: translateY(50px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@-moz-keyframes pointMove {
+	0% {
+		transform: translateY(0);
+	}
+
+	70% {
+		transform: translateY(50px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@-webkit-keyframes pointMove {
+	0% {
+		transform: translateY(0);
+	}
+
+	70% {
+		transform: translateY(50px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@-o-keyframes pointMove {
+	0% {
+		transform: translateY(0);
+	}
+
+	70% {
+		transform: translateY(50px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+.point {
+	position: absolute;
+	display: block;
+	width: 8.66666667rem;
+	height: 22.4rem;
+	right: 0;
+	overflow: hidden;
+	animation: pointMove 2s infinite;
+	-webkit-animation: pointMove 2s infinite;
+	bottom: 80rem;
+}
+
+.point img {
+	display: block;
+	width: 100%;
+}
+
+.draw_prize_list {
+	position: absolute;
+	top: 61.8666667rem;
+	left: 13.8666667rem;
+	overflow: hidden;
+}
+
+.draw_prize_list .draw_prize_item {
+	width: 21.3333333rem;
+	height: 36.8rem;
+	box-sizing: border-box;
+	margin-right: 1.8666667rem;
+	overflow: hidden;
+}
+
+.draw_prize_list .draw_prize_item:last-child {
+	margin-right: 0;
+}
+
+.draw_prize_list .draw_prize_item .con {
+	width: 21.3333333rem;
+	height: 36.8rem;
+	padding-top: 4.8rem;
+	padding-bottom: 5.06666667rem;
+	box-sizing: border-box;
+}
+
+.draw_prize_list .draw_prize_item .image_fra {
+	width: 17.0666667rem;
+	height: 17.0666667rem;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.draw_prize_list .draw_prize_item img {
+	display: block;
+	width: 100%;
+}
+
+.draw_prize_list .draw_prize_item .name {
+	font-size: 3.4666667rem;
+	text-align: center;
+	margin-top: 3.2rem;
+	padding: 0 1.3333333rem;
+}
+
+.draw_get_box {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 20;
+}
+
+.draw_get_box .mask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.draw_get_box .get_fra {
+	position: relative;
+	width: 68.4rem;
+	height: 71.4666667rem;
+	overflow: hidden;
+	margin: 0 auto;
+	margin-top: 38.6666667rem;
+}
+
+.draw_get_box .get_fra .get_back {
+	display: block;
+	width: 100%;
+}
+
+.draw_get_box .get_fra .btn {
+	position: absolute;
+	left: 50%;
+	bottom: 8.53333333rem;
+	margin-left: -19.1333333rem;
+	width: 38.2666667rem;
+	height: 13.3333333rem;
+}
+
+.draw_get_box .get_fra .btn .btn_back {
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: block;
+	width: 100%;
+	z-index: 1;
+}
+
+.draw_get_box .get_fra .btn .name {
+	position: relative;
+	z-index: 2;
+	text-align: center;
+	line-height: 13.3333333rem;
+	font-size: 5.456rem;
+	color: #ffffff;
+}
+
+.draw_get_box .get_fra .prize_name {
+	position: absolute;
+	width: 100%;
+	padding: 0 1.33333333rem;
+	box-sizing: border-box;
+	left: 0;
+	bottom: 26.6666667rem;
+	text-align: center;
+	color: #f34b4b;
+	font-size: 5.456rem;
+}
+
+.draw_get_box .get_fra .prize_img {
+	position: absolute;
+	width: 14rem;
+	height: 14rem;
+	left: 27.7333333rem;
+	top: 10.6666667rem;
+	overflow: hidden;
+}
+
+.draw_get_box .get_fra .prize_img img {
+	display: block;
+	width: 100%;
+
+}
+
+.draw_get_box .get_fra .no_prize_img {
+	/* width: 62.5px;
+	height: 64.5px;
+	left: 97px;
+	top: 25px; */
+	width: 16.6666667rem;
+	height: 17.2rem;
+	left: 25.8666667rem;
+	top: 6.66666667rem;
+}
+.tip_box{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.6);
+	top: 0;
+	left: 0;
+}
+.tip_box .con{
+	width: 80%;
+	background-color: #FFFFFF;
+	margin: 0 auto;
+	padding-bottom: 20px;
+	margin-top: 36.2318841rem;
+}
+.tip_box .con .title{
+	position: relative;
+	padding: 20px 15px 10px 15px;
+	font-size: 16px;
+	color:#f34b4b;
+}
+.tip_box .con .main{
+	position: relative;
+	padding: 10px 15px;
+	font-size: 14px;
+	color:#333333;
+}
+.tip_box .con .btn{
+	width: 40%;
+	text-align: center;
+	font-size: 14px;
+	background-color: #F34B4B;
+	color: #FFFFFF;
+	border-radius: 20px;
+	margin: 0 auto;
+	margin-top: 10px;
+	line-height: 35px;
+}
